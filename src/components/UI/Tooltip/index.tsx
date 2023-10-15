@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import cx from "clsx";
-import Popover, { PopoverProps } from "@/components/Popover";
+import Popover, { PopoverProps } from "@/components/UI/Popover";
 
 interface TooltipProps
   extends OverWrite<
