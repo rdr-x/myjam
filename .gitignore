@@ -13,6 +13,7 @@ lerna-debug.log*
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
@@ -47,3 +48,7 @@ pnpm-lock.yaml
 yarn.lock
 
 analyze
+
+#editor
+.idea
+.vscode
