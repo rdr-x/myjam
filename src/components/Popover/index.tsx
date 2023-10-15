@@ -16,11 +16,13 @@ import {
   useTransitionStyles,
   UseTransitionStylesProps,
 } from "@floating-ui/react";
-import { UseHoverProps } from "@floating-ui/react/src/hooks/useHover";
-import { UseClickProps } from "@floating-ui/react/src/hooks/useClick";
-import { UseFocusProps } from "@floating-ui/react/src/hooks/useFocus";
-import { UseDismissProps } from "@floating-ui/react/src/hooks/useDismiss";
-import { FloatingArrowProps } from "@floating-ui/react/src/components/FloatingArrow";
+import {
+  UseHoverProps,
+  UseClickProps,
+  UseFocusProps,
+  UseDismissProps,
+  FloatingArrowProps,
+} from "@floating-ui/react";
 
 //Only to be used for interaction Popover
 interface ArrowProps
