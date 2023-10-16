@@ -1,6 +1,6 @@
 import "../app/globals.css";
 import type { Metadata } from "next";
-import { ToastRender } from "../components/UI/Toast";
+import { ToastRender } from "../components/Toast";
 import JotaiProvider from "@/modules/JotaiProvider";
 import Navbar from "@/modules/NavBar";
 import { Providers } from "./providers";

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, type ComponentProps } from "react";
+import { useState, useEffect, type ComponentProps } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import cx from "clsx";

@@ -10,4 +10,5 @@ html {
 body {
   background: linear-gradient(180deg, #ff9591 0%, #f1686e 100%);
   @apply m-0 p-0 overflow-hidden;
+  font-family: poppins, serif;
 }
