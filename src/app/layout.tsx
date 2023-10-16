@@ -5,8 +5,8 @@ import JotaiProvider from "@/modules/JotaiProvider";
 import Navbar from "@/modules/NavBar";
 
 export const metadata: Metadata = {
-  title: "RPS game",
-  description: "Rock Paper Scissors Lazer Spock game",
+  title: "MyJam",
+  description: "Stream what you love",
 };
 
 export default function RootLayout({

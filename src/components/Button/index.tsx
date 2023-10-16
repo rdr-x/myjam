@@ -1,14 +1,12 @@
-import React, {
-  createElement,
-  forwardRef,
-  type ReactNode,
-  type PropsWithChildren,
-} from "react";
+import React, { forwardRef, type PropsWithChildren } from "react";
 import cx from "clsx";
+import "./index.css";
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: "primary" | "white";
+  variant?: "contained" | "outlined" | "text";
   fullWidth?: boolean;
-  loading?: boolean | "start" | "end";
+  loading?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
@@ -19,6 +17,8 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
       disabled = false,
       fullWidth = false,
       loading = false,
+      variant = "contained",
+      color = "primary",
       ...props
     },
     _forwardRef
@@ -26,9 +26,11 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
     return (
       <button
         className={cx(
-          "px-[14px] flex flex-row justify-center items-center h-[32px] whitespace-nowrap cursor-pointer border-[1px] text-[14px] rounded-[8px] leading-[22px] bg-[#111111] text-[#F1F1F3] hover:bg-[#292E41] hover:text-[#F1F1F3]",
+          `fui-button--${variant}`,
+          `fui-button--${color}`,
+          "px-[24px] flex flex-row justify-center items-center h-[48px] border-1px border-solid border-#000000 whitespace-nowrap cursor-pointer rounded-[45px]",
           (loading || disabled) &&
-            "pointer-events-none cursor-not-allowed opacity-30",
+            "bg-gray-400 pointer-events-none cursor-not-allowed",
           fullWidth ? "w-full" : "w-fit",
           className
         )}

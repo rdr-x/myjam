@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  @apply min-h-[100vh] w-[100%];
+}
+
+body {
+  background: linear-gradient(180deg, #ff9591 0%, #f1686e 100%);
+  @apply m-0 p-0 overflow-hidden;
+}
