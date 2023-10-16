@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ToastRender } from "@/components/Toast";
 import JotaiProvider from "@/modules/JotaiProvider";
-// import Navbar from "@/modules/Navbar";
+import Navbar from "@/modules/NavBar";
 
 export const metadata: Metadata = {
   title: "RPS game",
@@ -20,7 +20,7 @@ export default function RootLayout({
         <JotaiProvider>
           <>
             <ToastRender />
-            {/* <Navbar /> */}
+            <Navbar />
             {children}
           </>
         </JotaiProvider>

@@ -11,6 +11,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@cometh/connect-sdk": "^1.1.1",
     "@floating-ui/react": "^0.26.1",
     "@tanstack/query-core": "^4.36.1",
     "@types/node": "20.4.2",
