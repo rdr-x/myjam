@@ -6,7 +6,7 @@ import { AudioPlayer } from "@/components/AudioPlayer";
 import { CreateStream } from "@/components/CreateStream";
 
 const client = createReactClient({
-    provider: studioProvider({ apiKey: process.env.LIVEPEER_API_KEY }),
+    provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
 });
 export default function Home() {
     return (

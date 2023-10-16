@@ -13,6 +13,7 @@ const CreateStream = () => {
 
     const isLoading = useMemo(() => status === 'loading', [status]);
 
+    console.log(status)
     console.log(stream)
 
     return (
