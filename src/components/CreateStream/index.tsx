@@ -6,7 +6,7 @@ import {
     useState,
     ReactNode, useCallback
 } from "react";
-import {AudioPlayer} from "@/components/AudioPlayer";
+import { MediaPlayer } from "../MediaPlayer";
 
 interface Props {
     children?: ReactNode;
@@ -58,7 +58,8 @@ const CreateStream: FC<Props> = ({
                 </div>
             </div>}
             {stream &&
-                <AudioPlayer
+                < MediaPlayer
+                    title={stream?.name}
                     streamKey={stream?.streamKey}
                 />
             }
