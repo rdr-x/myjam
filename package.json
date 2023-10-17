@@ -13,6 +13,7 @@
   "dependencies": {
     "@cometh/connect-sdk": "^1.1.1",
     "@floating-ui/react": "^0.26.1",
+    "@livepeer/react": "^2.9.1",
     "@tanstack/query-core": "^4.36.1",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",

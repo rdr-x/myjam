@@ -1,23 +1,12 @@
 "use client";
-import AuthCon from "@/modules/AuthCon";
-import { LivepeerConfig, createReactClient  , studioProvider } from '@livepeer/react';
-import { DrawerComponent } from "@/components/UI/DrawerComponent";
-import { AudioPlayer } from "@/components/AudioPlayer";
-import { CreateStream } from "@/components/CreateStream";
+import { ReactNode } from "react";
 
-const client = createReactClient({
-    provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
-});
-export default function Home() {
+export default function Home({ children }: {
+    children: ReactNode
+}) {
     return (
-        <LivepeerConfig client={client}>
-            <main
-                className="flex min-h-screen flex-col items-center justify-between"
-            >
-                <CreateStream />
-                {/*<AudioPlayer />*/}
-                <DrawerComponent />
-            </main>
-        </LivepeerConfig>
+        <main className="flex min-h-screen flex-col items-center justify-between">
+            { children }
+        </main>
     );
 }

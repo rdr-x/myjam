@@ -1,10 +1,21 @@
-import { FC } from "react";
+import {FC, ReactNode} from "react";
 import { Broadcast } from '@livepeer/react';
 
-const AudioPlayer: FC = () => {
+interface PlayerProps {
+    children?: ReactNode;
+    streamKey: string | undefined;
+}
+
+const AudioPlayer: FC<PlayerProps> = ({
+    children,
+    streamKey
+                                      }) => {
   return (
       <Broadcast
-          streamKey={process.env.LIVEPEER_API_KEY}
+          title={''}
+          streamKey={streamKey}
+          /*controls={}
+          displayMediaOptions={}*/
       />
   );
 }

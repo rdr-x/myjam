@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "🍉 MyJam",
   applicationName: "🍉 MyJam",
   keywords: ["streaming", "music", "audio", "MyJam"],
-  description: "MyJam is a decentralized live-streaming platform that brings musicians and listeners together, empowering artists to create connections with audiences",
+  description: "MyJam is a decentralized live-streaming platform that brings musicians and listeners together, empowering artists to stream connections with audiences",
 };
 
 export default function RootLayout({
@@ -26,7 +26,6 @@ export default function RootLayout({
             <ToastRender />
             <Navbar />
             <Providers>
-              <ToastRender />
               {children}
             </Providers>
           </>

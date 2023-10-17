@@ -1,17 +1,21 @@
 'use client';
-
-import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
 import { ReactNode } from "react";
+import {
+    LivepeerConfig,
+    createReactClient,
+    studioProvider
+} from '@livepeer/react';
+
+const client = createReactClient({
+    provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
+});
 
 export function Providers({ children }: {
     children: ReactNode
 }) {
     return (
-        <CacheProvider>
-            <ChakraProvider>
-                {children}
-            </ChakraProvider>
-        </CacheProvider>
+        <LivepeerConfig client={client}>
+            {children}
+        </LivepeerConfig>
     )
 }

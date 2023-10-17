@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
   @apply min-h-[100vh] w-[100%];
 }
 
@@ -11,4 +12,8 @@ body {
   background: linear-gradient(180deg, #ff9591 0%, #f1686e 100%);
   @apply m-0 p-0 overflow-hidden;
   font-family: poppins, serif;
+}
+
+.bg-img {
+  background-image: url("../../public/speaker.png");
 }
