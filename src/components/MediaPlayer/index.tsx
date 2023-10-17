@@ -22,10 +22,12 @@ const Streaming: FC<PlayerProps> = ({ children, title, streamKey }) => {
   return (
       <section className="column-1 w-[70vw] items-center">
           <h1 className="mb-[.5rem] text-center text-white text-4xl font-semibold leading-[54px]">{title}</h1>
-          <div className="">
+          <div className="flex justify-center items-center p-[1.3rem]">
               <Broadcast
                   streamKey={streamKey}
                   controls={{ autohide: 0, hotkeys: false, defaultVolume: 0.6 }}
+                  aspectRatio="16to9"
+                  objectFit="cover"
               />
           </div>
           <div className="flex justify-center items-center">

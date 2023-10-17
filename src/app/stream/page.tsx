@@ -10,7 +10,6 @@ import {
     Player
 } from "@livepeer/react";
 import { CreateStream } from "@/components/CreateStream";
-import {AudioPlayer} from "../../components/MediaPlayer";
 
 const CreatePage: FC<ComponentProps<any>> = ({ children }) => {
 
