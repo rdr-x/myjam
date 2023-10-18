@@ -1,7 +1,6 @@
 'use client'
 import { PropsWithChildren } from 'react'
 import { useAtomValue, useAtom } from 'jotai'
-// import { useConnect as useConnectWallet, Connector, useAccount } from "wagmi";
 import Button from '@/components/Button'
 import { accountAtom, useConnect } from '@/services/account'
 import {

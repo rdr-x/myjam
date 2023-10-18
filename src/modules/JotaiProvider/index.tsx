@@ -8,9 +8,7 @@ import { pushAddressAtom, pushMessagesAtom } from '@/services/push'
 const JotaiProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <Provider>
-      {/* <WagmiConfig config={config}> */}
       <PushProvider>{children}</PushProvider>
-      {/* </WagmiConfig> */}
     </Provider>
   )
 }
