@@ -1,18 +1,18 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { ToastRender } from "@/components/Toast";
-import JotaiProvider from "@/modules/JotaiProvider";
-import Navbar from "@/modules/NavBar";
+import './globals.css'
+import type { Metadata } from 'next'
+import { ToastRender } from '@/components/Toast'
+import JotaiProvider from '@/modules/JotaiProvider'
+import Navbar from '@/modules/NavBar'
 
 export const metadata: Metadata = {
-  title: "MyJam",
-  description: "Stream what you love",
-};
+  title: 'MyJam',
+  description: 'Stream what you love',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
@@ -26,5 +26,5 @@ export default function RootLayout({
         </JotaiProvider>
       </body>
     </html>
-  );
+  )
 }

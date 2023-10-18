@@ -1,17 +1,17 @@
-"use client";
-import { forwardRef } from "react";
-import cx from "clsx";
-import style from "./style.module.css";
+'use client'
+import { forwardRef } from 'react'
+import cx from 'clsx'
+import style from './style.module.css'
 
 export type Props = OverWrite<
   React.InputHTMLAttributes<HTMLInputElement>,
   {
-    title?: string;
-    error?: boolean;
-    inputClassName?: string;
-    lableClassName?: string;
+    title?: string
+    error?: boolean
+    inputClassName?: string
+    lableClassName?: string
   }
->;
+>
 
 const Input = forwardRef<HTMLInputElement, Props>(
   (
@@ -34,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
           <label
             htmlFor={props.name}
             className={cx(
-              "mb-[4px] text-[14px] text-[#62677B]",
+              'mb-[4px] text-[14px] text-[#62677B]',
               lableClassName
             )}
           >
@@ -44,7 +44,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
         <div
           className={cx(
             style.balanceInput_wrapper,
-            error && "!border-[#E96170] !ring-[#E96170]",
+            error && '!border-[#E96170] !ring-[#E96170]',
             className
           )}
         >
@@ -55,7 +55,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
               className={cx(
                 style.balanceInput,
                 inputClassName,
-                error && "!text-[#E96170]"
+                error && '!text-[#E96170]'
               )}
               autoComplete="off"
               defaultValue={defaultValue}
@@ -69,8 +69,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
           </div>
         </div>
       </>
-    );
+    )
   }
-);
+)
 
-export default Input;
+export default Input

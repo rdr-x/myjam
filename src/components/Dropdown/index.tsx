@@ -1,18 +1,18 @@
-import React from "react";
-import { safePolygon } from "@floating-ui/react";
-import Popover, { PopoverProps, InteractionProps } from "@/components/Popover";
+import React from 'react'
+import { safePolygon } from '@floating-ui/react'
+import Popover, { PopoverProps, InteractionProps } from '@/components/Popover'
 
 type DropdownProps = OverWrite<
   PopoverProps,
-  { trigger?: "hover" | "focus" | "click"; interactionProps?: InteractionProps }
->;
+  { trigger?: 'hover' | 'focus' | 'click'; interactionProps?: InteractionProps }
+>
 
 const Dropdown: React.FC<DropdownProps> = ({
   Content,
-  trigger = "hover",
+  trigger = 'hover',
   children,
   options = {
-    placement: "bottom",
+    placement: 'bottom',
   },
   interactionProps = {
     handleClose: safePolygon(),
@@ -28,14 +28,14 @@ const Dropdown: React.FC<DropdownProps> = ({
       interactionProps={interactionProps}
       transitionStylesProps={{
         duration: 200,
-        initial: { maxHeight: "0px" },
-        open: { maxHeight: "500px" },
-        common: { overflow: "hidden" },
+        initial: { maxHeight: '0px' },
+        open: { maxHeight: '500px' },
+        common: { overflow: 'hidden' },
       }}
     >
       {children}
     </Popover>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown

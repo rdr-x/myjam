@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import cx from "clsx";
-import Popover, { PopoverProps } from "@/components/Popover";
+'use client'
+import React from 'react'
+import cx from 'clsx'
+import Popover, { PopoverProps } from '@/components/Popover'
 
 interface TooltipProps
   extends OverWrite<
-    Omit<PopoverProps, "Content">,
-    { trigger?: "click" | "hover" | "focus" }
+    Omit<PopoverProps, 'Content'>,
+    { trigger?: 'click' | 'hover' | 'focus' }
   > {}
 
 const ToolTip: React.FC<
@@ -16,11 +16,11 @@ const ToolTip: React.FC<
   text,
   className,
   options = {
-    placement: "top",
+    placement: 'top',
   },
   hasArrow = true,
   // delay = 180,
-  trigger = "hover",
+  trigger = 'hover',
   ...props
 }) => {
   return (
@@ -30,7 +30,7 @@ const ToolTip: React.FC<
       Content={
         <div
           className={cx(
-            "px-[8px] flex items-center max-w-[300px] text-[14px] leading-[22px] text-[#FFFFFF] bg-[#323233] rounded-[2px] whitespace-normal break-keep",
+            'px-[8px] flex items-center max-w-[300px] text-[14px] leading-[22px] text-[#FFFFFF] bg-[#323233] rounded-[2px] whitespace-normal break-keep',
             className
           )}
         >
@@ -45,7 +45,7 @@ const ToolTip: React.FC<
     >
       {children}
     </Popover>
-  );
-};
+  )
+}
 
-export default ToolTip;
+export default ToolTip

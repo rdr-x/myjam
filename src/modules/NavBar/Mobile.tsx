@@ -1,7 +1,7 @@
-import React, { type ComponentProps } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import cx from "clsx";
+import React, { type ComponentProps } from 'react'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import cx from 'clsx'
 
 const NavLink: React.FC<ComponentProps<typeof Link> & { curPath: string }> = ({
   href,
@@ -10,9 +10,9 @@ const NavLink: React.FC<ComponentProps<typeof Link> & { curPath: string }> = ({
 }) => (
   <li
     className={cx(
-      "relative pl-[40px] flex items-center w-full h-[48px] dropdown-shadow",
+      'relative pl-[40px] flex items-center w-full h-[48px] dropdown-shadow',
       {
-        ["nav-link-mobile--active"]: curPath?.startsWith(href as string),
+        ['nav-link-mobile--active']: curPath?.startsWith(href as string),
       }
     )}
   >
@@ -23,7 +23,7 @@ const NavLink: React.FC<ComponentProps<typeof Link> & { curPath: string }> = ({
       {children}
     </Link>
   </li>
-);
+)
 
 const Mobile: React.FC<{ open: boolean; curPath: string }> = ({
   open,
@@ -32,8 +32,8 @@ const Mobile: React.FC<{ open: boolean; curPath: string }> = ({
   return (
     <div
       className={cx(
-        "nav-mobile sm:display-none absolute w-full h-[calc(100vh-80px)] left-[0] top-[80px] bg-[#FF6B6B] transition-transform duration-300 z-[50] -translate-y-[100vh]",
-        open && "translate-y-[0px]"
+        'nav-mobile sm:display-none absolute w-full h-[calc(100vh-80px)] left-[0] top-[80px] bg-[#FF6B6B] transition-transform duration-300 z-[50] -translate-y-[100vh]',
+        open && 'translate-y-[0px]'
       )}
     >
       <ul className="pl-[0px] m-[0px] flex flex-col gap-[12px] text-[22px] font-semibold text-[#ffffff]">
@@ -48,7 +48,7 @@ const Mobile: React.FC<{ open: boolean; curPath: string }> = ({
         </NavLink>
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Mobile;
+export default Mobile
