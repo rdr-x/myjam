@@ -10,6 +10,7 @@ import { MediaPlayer } from "../MediaPlayer";
 
 interface Props {
     children?: ReactNode;
+    title?: string;
 }
 
 const CreateStream: FC<Props> = ({
@@ -61,6 +62,7 @@ const CreateStream: FC<Props> = ({
                 < MediaPlayer
                     title={stream?.name}
                     streamKey={stream?.streamKey}
+                    render={() => <CancelStream title={stream?.name}/>}
                 />
             }
         </div>
@@ -68,3 +70,25 @@ const CreateStream: FC<Props> = ({
 }
 
 export { CreateStream };
+const CancelStream: FC<Props> = ({title}) => {
+    return (
+        <div
+            className="w-[311px] h-[238px] p-[2rem] relative bg-white bg-opacity-10 rounded-xl border border-white border-opacity-60 backdrop-blur-[206px] flex-col justify-start items-start inline-flex">
+            <div className="w-6 h-6 relative"></div>
+            <div className="text-white text-2xl font-semibold font-['Poppins'] leading-9">
+                {title}
+            </div>
+            <div className="w-[257px] text-white text-sm font-medium font-['Poppins'] leading-[21px]">
+                This is a description of my current JAM that I created
+            </div>
+            <div
+                className="w-[257px] h-12 px-6 bg-rose-500 rounded-[45px] justify-center items-center gap-2 inline-flex">
+                <div className="w-[26px] h-[26px] p-1.5 justify-center items-center flex">
+                    <div className="w-3.5 h-3.5 relative bg-black"></div>
+                </div>
+                <div className="text-gray-900 text-lg font-semibold font-['Inter'] leading-7">Stop JAMin</div>
+            </div>
+        </div>
+    );
+}
+

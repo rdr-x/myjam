@@ -6,18 +6,19 @@ interface PlayerProps {
     children?: ReactNode;
     title?: string;
     streamKey: string | undefined;
+    render?: () => JSX.Element;
 }
 
-const MediaPlayer: FC<PlayerProps> = ({ title, streamKey }) => {
+const MediaPlayer: FC<PlayerProps> = ({ title, streamKey, render }) => {
   return (
       <section className="flex mt-[2.5rem] gap-4">
-          <Streaming title={title} streamKey={streamKey}/>
+          <Streaming title={title} streamKey={streamKey} render={render}/>
           <Chat />
       </section>
   );
 }
 
-const Streaming: FC<PlayerProps> = ({ children, title, streamKey }) => {
+const Streaming: FC<PlayerProps> = ({ children, title, streamKey, render }) => {
 
   return (
       <section className="column-1 w-[70vw] items-center">
@@ -31,7 +32,7 @@ const Streaming: FC<PlayerProps> = ({ children, title, streamKey }) => {
               />
           </div>
           <div className="flex justify-center items-center">
-
+              {render && render()}
           </div>
       </section>
   );
