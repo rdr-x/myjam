@@ -1,31 +1,31 @@
-"use client";
-import { useCreateStream, Player } from "@livepeer/react";
-import { FC, useMemo, useState, ReactNode, useCallback } from "react";
-import TextArea from "../TextArea";
-import { MediaPlayer } from "../MediaPlayer";
+'use client'
+import { useCreateStream, Player } from '@livepeer/react'
+import { FC, useMemo, useState, ReactNode, useCallback } from 'react'
+import TextArea from '../TextArea'
+import { MediaPlayer } from '../MediaPlayer'
 
 interface Props {
-  children?: ReactNode;
-  title?: string;
+  children?: ReactNode
+  title?: string
 }
 
 const CreateStream: FC<Props> = ({ children }) => {
-  const [streamName, setStreamName] = useState<string>("");
+  const [streamName, setStreamName] = useState<string>('')
 
   const {
     mutate: createStream,
     data: stream,
     status,
-  } = useCreateStream({ name: streamName });
+  } = useCreateStream({ name: streamName })
 
-  const isLoading = useMemo(() => status === "loading", [status]);
+  const isLoading = useMemo(() => status === 'loading', [status])
 
   return (
     <div className="flex justify-center items-center">
       {!stream && (
         <div className="w-[311px] h-[337px] p-[27px] bg-black bg-opacity-10 rounded-xl backdrop-blur-[306px] flex-col justify-start items-start gap-[29px] inline-flex">
           <div className="text-white text-2xl font-semibold font-['Poppins'] leading-9">
-            {streamName ? streamName : "New JAM"}
+            {streamName ? streamName : 'New JAM'}
           </div>
           <div className="w-[257px] h-[141px] px-6 py-3 bg-white bg-opacity-10 rounded-xl border border-gray-200 border-opacity-40 justify-start items-start gap-2.5 inline-flex">
             <TextArea
@@ -40,7 +40,7 @@ const CreateStream: FC<Props> = ({ children }) => {
           <div>
             <button
               className="w-[257px] h-12 px-6 bg-slate-100 rounded-[45px] justify-center items-center gap-2 inline-flex"
-              disabled={status === "loading" || !createStream}
+              disabled={status === 'loading' || !createStream}
               onClick={() => createStream?.()}
             >
               <svg
@@ -70,10 +70,10 @@ const CreateStream: FC<Props> = ({ children }) => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export { CreateStream };
+export { CreateStream }
 const CancelStream: FC<Props> = ({ title }) => {
   return (
     <div className="w-[311px] h-[238px] p-[2rem] relative bg-white bg-opacity-10 rounded-xl border border-white border-opacity-60 backdrop-blur-[206px] flex-col justify-start items-start inline-flex">
@@ -93,5 +93,5 @@ const CancelStream: FC<Props> = ({ title }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

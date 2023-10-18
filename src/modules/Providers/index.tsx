@@ -1,19 +1,32 @@
 'use client'
 import { ReactNode, useEffect } from 'react'
-import { Provider, useAtomValue, useSetAtom } from 'jotai'
+import { Provider as JotaiProvider, useAtomValue, useSetAtom } from 'jotai'
 import { Env } from '@pushprotocol/restapi'
 import { createSocketConnection, EVENTS } from '@pushprotocol/socket'
 import { pushAddressAtom, pushMessagesAtom } from '@/services/push'
+import {
+  LivepeerConfig,
+  createReactClient,
+  studioProvider,
+} from '@livepeer/react'
 
-const JotaiProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const client = createReactClient({
+  provider: studioProvider({
+    apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY ?? '',
+  }),
+})
+
+const Providers: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <Provider>
-      <PushProvider>{children}</PushProvider>
-    </Provider>
+    <JotaiProvider>
+      <LivepeerConfig client={client}>
+        <PushProvider>{children}</PushProvider>
+      </LivepeerConfig>
+    </JotaiProvider>
   )
 }
 
-export default JotaiProvider
+export default Providers
 
 export const PushProvider: React.FC<{ children: ReactNode }> = ({
   children,

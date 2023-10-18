@@ -15,9 +15,9 @@ body {
 }
 
 .bg-img {
-  background-image: url("../../public/speaker.png");
+  background-image: url('../../public/speaker.png');
 }
 
 .bg-avatar {
-  background-image: url("../../public/avatar.png");
+  background-image: url('../../public/avatar.png');
 }
