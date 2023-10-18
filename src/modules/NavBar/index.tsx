@@ -59,8 +59,8 @@ const Navbar: React.FC = () => {
           <NavLink href="/" curPath={curPath === '/' || curPath === '/home'}>
             <HomeIcon curPath={curPath === '/' || curPath === '/home'} />
           </NavLink>
-          <NavLink href="/create" curPath={curPath === '/create'}>
-            <MicIcon curPath={curPath === '/create'} />
+          <NavLink href="/stream" curPath={curPath === '/stream'}>
+            <MicIcon curPath={curPath === '/stream'} />
           </NavLink>
           <NavLink href="/view" curPath={curPath === '/view'}>
             <VoiceIcon curPath={curPath === '/view'} />

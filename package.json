@@ -15,6 +15,7 @@
     "@floating-ui/react": "^0.26.1",
     "@pushprotocol/restapi": "^1.4.24",
     "@pushprotocol/socket": "^0.5.2",
+    "@livepeer/react": "^2.9.1",
     "@tanstack/query-core": "^4.36.1",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",

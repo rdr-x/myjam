@@ -40,10 +40,10 @@ const Mobile: React.FC<{ open: boolean; curPath: string }> = ({
         <NavLink href="/" curPath={curPath}>
           home
         </NavLink>
-        <NavLink href="/create" curPath={curPath}>
+        <NavLink href="/stream" curPath={curPath}>
           Create
         </NavLink>
-        <NavLink href="/create" curPath={curPath}>
+        <NavLink href="/stream" curPath={curPath}>
           view
         </NavLink>
       </ul>
