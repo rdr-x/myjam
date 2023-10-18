@@ -1,7 +1,8 @@
 'use client';
 import { FC } from "react";
-import { STREAM_STATUS, Streams } from "@/app/view/utils";
+import { STREAM_STATUS, Streams } from "./types.d.ts";
 import { formatNumber } from "@/utils/numbers";
+import { useRouter } from "next/navigation";
 
 const StreamCard: FC<Streams> = ({
                                      streamer,
@@ -10,10 +11,13 @@ const StreamCard: FC<Streams> = ({
                                      cost,
                                      description,
                                      id}) => {
+    const router = useRouter();
+
+
     return (
         <div className="flex w-[22rem] h-[13rem] relative bg-white bg-opacity-10 rounded-xl shadow border border-white border-opacity-60 gap-1">
             <div className="flex start w-[4.5vw] m-[1rem]">
-                <div className="w-[4rem] h-[4rem] bg-neutral-900 rounded-[51px]" />
+                <div className="bg-avatar w-[4rem] h-[4rem] bg-neutral-900 rounded-[51px]" />
             </div>
             <div className="flex-1 flex-col mt-[1rem] pr-[1rem]">
                 <h1 className="text-white text-xl font-medium">
@@ -35,7 +39,14 @@ const StreamCard: FC<Streams> = ({
                         <p className="text-white text-sm font-medium">{status}</p>
                     </div>
                 </div>
-                <button className="w-full h-8 px-3 bg-amber-200 rounded-[27px] justify-center items-center gap-2 inline-flex mt-[1rem]">
+                <button
+                    className="w-full h-8 px-3 bg-amber-200 rounded-[27px] justify-center items-center gap-2 inline-flex mt-[1rem]"
+                    onClick={() => {
+                        status === STREAM_STATUS.LIVE ?
+                            router.push(`/view/${id}`) :
+                            null
+                    }}
+                >
                     <p className="text-gray-900 text-sm font-semibold font-['Inter'] leading-tight">{status === STREAM_STATUS.LIVE ? `Join for ${cost} ETH` : 'Notify me'}</p>
                 </button>
             </div>

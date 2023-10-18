@@ -1,8 +1,7 @@
 'use client';
 import { FC } from "react";
-import { liveStreams, upcomingStreams } from "./utils";
-import { StreamCard } from "@/components/StreamCard";
-
+import { liveStreams, upcomingStreams } from "@/components/Stream/data";
+import { StreamCard } from "@/components/Stream";
 const ViewPage: FC = () => {
   return (
       <div className="flex flex-col items-center w-[100vw] h-[100vh] mt-[5rem]">
@@ -13,6 +12,7 @@ const ViewPage: FC = () => {
                         return (
                             <StreamCard
                                 key={stream.id}
+                                id={stream.id}
                                 streamer={stream.streamer}
                                 description={stream.description}
                                 audience={stream.audience}
@@ -30,6 +30,7 @@ const ViewPage: FC = () => {
                         return (
                             <StreamCard
                                 key={stream.id}
+                                id={stream.id}
                                 streamer={stream.streamer}
                                 description={stream.description}
                                 audience={stream.audience}
