@@ -1,5 +1,5 @@
 .navbar-link::before {
-  @apply absolute content-none h-full w-[0%] top-[0px] left-[100%] border-b-[2px] border-[#000000]  transition-all transition-[linear] duration-[200] pointer-events-none;
+  @apply absolute content-none h-full w-[0%] top-[0px] left-[100%] border-b-[2px] border-[#ffffff]  transition-all transition-[linear] duration-[200] pointer-events-none;
 }
 
 .navbar-link:hover::before,
@@ -13,7 +13,7 @@
 }
 
 .burger-container {
-  @apply flex justify-center items-center h-full text-[#000000]  cursor-pointer;
+  @apply flex justify-center items-center h-full text-[#ffffff]  cursor-pointer;
 }
 
 .burger-check {
@@ -21,19 +21,19 @@
 }
 
 .burger {
-  @apply relative inline-block w-[24px] h-[2px] bg-[#000000]  appearance-none;
+  @apply relative inline-block w-[24px] h-[2px] bg-[#ffffff]  appearance-none;
   transition: background-color 350ms ease-in-out 0s;
 }
 
 .burger::before {
   content: '';
-  @apply absolute block w-full h-[2px] bg-[#000000]  top-[6px];
+  @apply absolute block w-full h-[2px] bg-[#ffffff]  top-[6px];
   transition: transform 0.5s ease-in-out 0s;
 }
 
 .burger::after {
   content: '';
-  @apply absolute block w-full h-[2px] bg-[#000000]  bottom-[6px];
+  @apply absolute block w-full h-[2px] bg-[#ffffff]  bottom-[6px];
   transition: transform 0.5s ease-in-out 0s;
 }
 
@@ -54,5 +54,5 @@
 }
 
 .nav-link-mobile--active::before {
-  @apply content-none absolute block h-[24px] w-[4px] bg-[#000000]  -left-[12px];
+  @apply content-none absolute block h-[24px] w-[4px] bg-[#ffffff]  -left-[12px];
 }

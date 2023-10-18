@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { atom, useAtom, useAtomValue } from 'jotai'
+import { atom, useAtomValue, useSetAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
 import {
@@ -26,10 +26,11 @@ export const walletAddressAtom = atomWithStorage<string | null>(
   null
 )
 
+//TODO: rewrite with writeonly-atom
 export const useConnect = () => {
   const wallet = useAtomValue(walletAtom)
   const walletAddress = useAtomValue(walletAddressAtom)
-  const [account, setAccount] = useAtom(accountAtom)
+  const setAccount = useSetAtom(accountAtom)
 
   const connect = useCallback(async () => {
     try {
@@ -49,3 +50,37 @@ export const useConnect = () => {
 
   return { connect }
 }
+
+// export const asyncAccountsAtom = atom(
+//   null,
+//   // async (get, set, type: "initial" | "connect") => {
+//   async (get, set) => {
+//     if (typeof window === "undefined") return;
+//     if (!window.ethereum) {
+//       throw new Error("Please install MetaMask");
+//     }
+//     // if (type === "initial") {
+//     //   const accounts = await window.ethereum.request({
+//     //     method: "eth_accounts",
+//     //   });
+//     //   set(pushUserAtom, accounts);
+//     //   const network = window.ethereum.networkVersion;
+//     //   set(networkAtom, network);
+//     //   return;
+//     // }
+//     // if (type === "connect") {
+//     const accounts = await window.ethereum.request({
+//       method: "eth_requestAccounts",
+//     });
+//     set(pushUserAtom, accounts);
+//     // const network = window.ethereum.networkVersion;
+//     // if (network !== "11155111") {
+//     //   await window.ethereum.request({
+//     //     method: "wallet_switchEthereumChain",
+//     //     params: [{ chainId: "0xaa36a7" }],
+//     //   });
+//     // }
+//     // set(networkAtom, "11155111");
+//     // }
+//   }
+// );
