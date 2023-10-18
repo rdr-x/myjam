@@ -1,5 +1,5 @@
 'use client'
-import { PropsWithChildren, use } from 'react'
+import { PropsWithChildren } from 'react'
 import { useAtomValue, useAtom } from 'jotai'
 // import { useConnect as useConnectWallet, Connector, useAccount } from "wagmi";
 import Button from '@/components/Button'
