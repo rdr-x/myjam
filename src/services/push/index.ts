@@ -1,10 +1,12 @@
 import { useCallback } from 'react'
 import { atom, useAtomValue } from 'jotai'
-import { PushAPI, Env } from '@pushprotocol/restapi'
+import { PushAPI, Env, IMessageIPFS } from '@pushprotocol/restapi'
 import { ethers } from 'ethers'
 
 export const pushAccountAtom = atom<PushAPI | null>(null)
 export const pushAddressAtom = atom<string | null>(null)
+export const pushMessagesAtom = atom<string[]>([])
+export const permissionAtom = atom<boolean>(false)
 
 export const initializePushAtom = atom(null, async (get, set) => {
   try {
@@ -31,11 +33,10 @@ export const useCreatePushGroup = () => {
     async (groupName: string) => {
       try {
         if (!pushAccount) throw new Error('Please initialize push account')
-        debugger
         const groupRes = await pushAccount.chat.group.create(
           groupName.slice(0, 50),
           {
-            description: 'This is a group',
+            description: 'MyJam chatting group',
             image: 'data:image/png;base64,iVBORw0K...',
             members: [
               '0x2E7A81e310ef354005fC125734665Ab691e1577B',
@@ -60,3 +61,39 @@ export const useCreatePushGroup = () => {
 
   return { createPushGroup }
 }
+
+export const fetchHistoryAtom = atom(null, async (get, set, chatId: string) => {
+  try {
+    const pushAccount = get(pushAccountAtom)
+    if (!pushAccount || !chatId)
+      throw new Error('Please initialize push account')
+    const historyRes = await pushAccount.chat.history(chatId)
+    const historyMessages: string[] = []
+    historyRes.forEach((message) => {
+      historyMessages.push(message.messageContent)
+    })
+    set(pushMessagesAtom, [...historyMessages])
+  } catch (err) {
+    throw err
+  }
+})
+
+export const checkPermissionAtom = atom(
+  null,
+  async (get, set, chatId: string) => {
+    try {
+      const pushAccount = get(pushAccountAtom)
+      if (!pushAccount || !chatId)
+        throw new Error('Please initialize push account')
+      const permissionRes = await pushAccount.chat.group.permissions(chatId)
+      if (permissionRes.entry && permissionRes.chat) {
+        await pushAccount.chat.group.join(chatId)
+        set(permissionAtom, true)
+      } else {
+        throw new Error('You do not have permission to access this group')
+      }
+    } catch (err) {
+      throw err
+    }
+  }
+)

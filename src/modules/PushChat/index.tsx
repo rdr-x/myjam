@@ -1,23 +1,22 @@
 'use client'
 import { useEffect, useCallback } from 'react'
-import { useAtomValue } from 'jotai'
-import { useWalletClient } from 'wagmi'
-import { PushAPI, Env } from '@pushprotocol/restapi'
+import { useAtomValue, useAtom } from 'jotai'
 import Button from '@/components/Button'
 import {
   useCreatePushGroup,
   pushAddressAtom,
   pushAccountAtom,
+  pushMessagesAtom,
+  fetchHistoryAtom,
 } from '@/services/push'
-import { PushAuthCon } from '../AuthCon'
+import { PushAuthCon, PermissionAuthCon } from '../AuthCon'
 
 const PushChat: React.FC = () => {
   const { createPushGroup } = useCreatePushGroup()
+  const [, fetchHistory] = useAtom(fetchHistoryAtom)
   const pushAddress = useAtomValue(pushAddressAtom)
   const pushAccount = useAtomValue(pushAccountAtom)
-  console.log('pushAccount', pushAccount)
-  console.log('pushAddress', pushAddress)
-  //   const { data: signer } = useWalletClient();
+  const pushMessages = useAtomValue(pushMessagesAtom)
 
   const create = useCallback(async () => {
     try {
@@ -26,17 +25,6 @@ const PushChat: React.FC = () => {
       let groupName = timeStamp.concat(pushAddress ?? '')
       const groupId = await createPushGroup(groupName)
       console.log('groupId', groupId)
-      //   const restSend = await pushAccount?.chat.send(
-      //     "0x2f0c8cE87Bf9FBC5DB6c7401Ee911a1bD4AEA0B9",
-      //     {
-      //       content: "Hello Bob!",
-      //       type: "Text",
-      //     }
-      //   );
-      //   console.log("message sent", restSend);
-      //   console.log("usercreated");
-      //   const res = await user?.chat.group.create(groupName.slice(0, 49));
-      //   console.log("chatID", res?.chatId);
     } catch (e) {
       console.log(e)
     }
@@ -45,22 +33,37 @@ const PushChat: React.FC = () => {
   const send = useCallback(async () => {
     try {
       const chatRes = await pushAccount?.chat.send(
-        'e8a730d20062e22fad9edbf334e0c9f35e7ef7c4a070ead55e9463dacadd6c8c',
+        '9c950af0651a8533c0ce7fdd06362864d1fef7f6ede459e1283d5f30091ba609',
         {
-          content: 'Hello Bob!',
+          content: 'Hey!',
           type: 'Text',
         }
       )
-      console.log('chatRes', chatRes)
     } catch (e) {
       console.log(e)
     }
   }, [pushAccount])
+
+  useEffect(() => {
+    try {
+      fetchHistory(
+        '9c950af0651a8533c0ce7fdd06362864d1fef7f6ede459e1283d5f30091ba609'
+      )
+    } catch (err) {
+      console.log(err)
+    }
+  }, [pushAccount])
   return (
     <div>
-      123
+      <div className="flex-col gap-y-[12px]">
+        {pushMessages?.map((message, index) => (
+          <div key={index}>{message}</div>
+        ))}
+      </div>
       <PushAuthCon>
-        <Button onClick={send}>send</Button>
+        <PermissionAuthCon>
+          <Button onClick={send}>send</Button>
+        </PermissionAuthCon>
       </PushAuthCon>
       <PushAuthCon>
         <Button onClick={create}>create</Button>

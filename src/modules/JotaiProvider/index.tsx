@@ -1,9 +1,9 @@
 'use client'
 import { ReactNode, useEffect } from 'react'
-import { Provider, useAtomValue } from 'jotai'
+import { Provider, useAtomValue, useSetAtom } from 'jotai'
 import { Env } from '@pushprotocol/restapi'
 import { createSocketConnection, EVENTS } from '@pushprotocol/socket'
-import { pushAddressAtom } from '@/services/push'
+import { pushAddressAtom, pushMessagesAtom } from '@/services/push'
 
 const JotaiProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
@@ -21,6 +21,8 @@ export const PushProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const pushAddress = useAtomValue(pushAddressAtom)
+  const setPushMessages = useSetAtom(pushMessagesAtom)
+
   useEffect(() => {
     if (!pushAddress) return
     const pushSDKSocket = createSocketConnection({
@@ -31,7 +33,7 @@ export const PushProvider: React.FC<{ children: ReactNode }> = ({
     })
     if (!pushSDKSocket) return
     pushSDKSocket.on(EVENTS.CHAT_RECEIVED_MESSAGE, (message) => {
-      console.log('message recieved', message)
+      setPushMessages((messages) => [...messages, message.messageObj.content])
     })
     return () => {
       pushSDKSocket.disconnect()
