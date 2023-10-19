@@ -1,9 +1,11 @@
-'use client'
+'use client';
 import { FC } from 'react'
+import { Watch } from "@/components/Watch";
 const StreamPage: FC = () => {
   return (
-    <div>
-      <h1>viewStream</h1>
+    <div className="flex justify-start items-center">
+        <div className="w-[20vw]"></div>
+        <Watch />
     </div>
   )
 }

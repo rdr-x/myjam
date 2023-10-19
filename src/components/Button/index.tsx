@@ -3,7 +3,7 @@ import cx from 'clsx'
 import './index.css'
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: 'primary' | 'white'
+  color?: 'primary' | 'white' | 'secondary' | 'amber'
   variant?: 'contained' | 'outlined' | 'text'
   fullWidth?: boolean
   loading?: boolean

@@ -1,8 +1,10 @@
-'use client'
-import { useCreateStream, Player } from '@livepeer/react'
-import { FC, useEffect, useState, ReactNode, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import TextArea from '../TextArea'
+'use client';
+import { useCreateStream, Player } from '@livepeer/react';
+import { FC, useEffect, useState, ReactNode, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import TextArea from '../TextArea';
+import { useAtom } from 'jotai';
+import { streamState, StreamObject } from "@/services/stream";
 
 interface Props {
   children?: ReactNode
@@ -11,7 +13,7 @@ interface Props {
 
 const CreateStream: FC<Props> = ({ children }) => {
   const [streamName, setStreamName] = useState<string>('')
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: createStream,
@@ -21,8 +23,8 @@ const CreateStream: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!stream) return
-    const { name, streamKey } = stream
-    router.push(`/stream/live?title=${name}&streamKey=${streamKey}`)
+    const { name, streamKey, id } = stream;
+    router.push(`/stream/live?title=${name}&streamKey=${streamKey}&id=${id}`);
   }, [stream])
 
   return (

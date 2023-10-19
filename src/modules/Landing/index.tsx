@@ -16,6 +16,7 @@ const LandingPage: FC = () => {
                         <h2 className="text-white text-[1.6rem] font-bold leading-[53.94px]">STREAM FROM ANYWHERE</h2>
                         <Button
                             fullWidth
+                            color="amber"
                         >
                             <p className="text-black text-[2rem] font-semibold leading-7">Launch App</p>
                         </Button>
