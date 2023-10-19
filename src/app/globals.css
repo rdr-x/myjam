@@ -10,14 +10,18 @@ html {
 
 body {
   background: linear-gradient(180deg, #ff9591 0%, #f1686e 100%);
-  @apply m-0 p-0 overflow-hidden;
+  @apply m-0 p-0 overflow-x-hidden;
   font-family: poppins, serif;
 }
 
 .bg-img {
-  background-image: url('../../public/speaker.png');
+  background-image: url('/public/speaker.png');
 }
 
 .bg-avatar {
-  background-image: url('../../public/avatar.png');
+  background-image: url('/public/avatar.png');
+}
+
+textarea {
+  outline: none;
 }

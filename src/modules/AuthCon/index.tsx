@@ -31,29 +31,21 @@ export const PushAuthCon: React.FC<PropsWithChildren> = ({
   const [, initializePush] = useAtom(initializePushAtom)
   if (pushAccount) return <>{children}</>
   return (
-    <Button onClick={initializePush} {...props}>
+    <Button fullWidth onClick={initializePush} {...props}>
       Connect Push
     </Button>
   )
 }
 
-export const PermissionAuthCon: React.FC<PropsWithChildren> = ({
-  children,
-  ...props
-}) => {
+export const PermissionAuthCon: React.FC<
+  PropsWithChildren & { chatid: string }
+> = ({ children, chatid, ...props }) => {
   const permissed = useAtomValue(permissionAtom)
   const [, checkPermission] = useAtom(checkPermissionAtom)
   if (permissed) return <>{children}</>
   return (
-    <Button
-      onClick={() =>
-        checkPermission(
-          '9c950af0651a8533c0ce7fdd06362864d1fef7f6ede459e1283d5f30091ba609'
-        )
-      }
-      {...props}
-    >
-      Connect Push
+    <Button fullWidth onClick={() => checkPermission(chatid)} {...props}>
+      Join the Chat
     </Button>
   )
 }

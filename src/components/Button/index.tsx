@@ -7,6 +7,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'contained' | 'outlined' | 'text'
   fullWidth?: boolean
   loading?: boolean
+  size?: 'small' | 'medium' | 'large'
 }
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
@@ -19,6 +20,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
       loading = false,
       variant = 'contained',
       color = 'primary',
+      size = 'medium',
       ...props
     },
     _forwardRef

@@ -5,7 +5,7 @@ import { CreateStream } from '@/components/CreateStream'
 
 const CreatePage: FC<ComponentProps<any>> = ({ children }) => {
   return (
-    <div className="bg-img h-[100vh] w-[100vw]">
+    <div className="bg-img h-[calc(100vh-80px)] w-[100vw]">
       <div className="flex justify-center items-center h-full w-full">
         <CreateStream />
       </div>
