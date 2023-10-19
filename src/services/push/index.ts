@@ -64,9 +64,10 @@ export const useCreatePushGroup = () => {
 
 export const fetchHistoryAtom = atom(null, async (get, set, chatId: string) => {
   try {
+    if (typeof window === 'undefined') return
     const pushAccount = get(pushAccountAtom)
-    if (!pushAccount || !chatId)
-      throw new Error('Please initialize push account')
+    if (!pushAccount || !chatId) return
+    // throw new Error('Please initialize push account')
     const historyRes = await pushAccount.chat.history(chatId)
     const historyMessages: string[] = []
     historyRes.forEach((message) => {
