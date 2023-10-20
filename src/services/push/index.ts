@@ -22,6 +22,10 @@ export const initializePushAtom = atom(null, async (get, set) => {
       throw new Error('Please install MetaMask')
     }
     const provider = await new ethers.providers.Web3Provider(window.ethereum)
+    const accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    })
+
     const signer = await provider.getSigner()
     // const user = await PushAPI.initialize(signer, { env: "prod" as Env });
     const user = await PushAPI.initialize(signer)
