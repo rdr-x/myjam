@@ -1,9 +1,9 @@
 'use client'
 import { FC } from 'react'
-import { STREAM_STATUS, Streams } from '@/services/stream';
+import { STREAM_STATUS, Streams } from '@/services/stream'
 import { formatNumber } from '@/utils/numbers'
 import { useRouter } from 'next/navigation'
-import {StreamFeatures} from "@/components/StreamFeatures";
+import { StreamFeatures } from '@/components/StreamFeatures'
 import Button from '@/components/Button'
 
 const StreamCard: FC<Streams> = ({
@@ -24,13 +24,13 @@ const StreamCard: FC<Streams> = ({
       <div className="flex-1 flex-col mt-[1rem] pr-[1rem]">
         <h1 className="text-white text-xl font-medium">{streamer}</h1>
         <span className="text-white text-xs font-normal ">{description}</span>
-          <StreamFeatures status={status} audience={audience} />
+        <StreamFeatures status={status} audience={audience} />
         <Button
-            fullWidth
-            color="amber"
-            onClick={() => {
-              status === STREAM_STATUS.LIVE ? router.push(`/view/${id}`) : null
-            }}
+          fullWidth
+          color="amber"
+          onClick={() => {
+            status === STREAM_STATUS.LIVE ? router.push(`/view/${id}`) : null
+          }}
         >
           <p className="text-gray-900 text-sm font-semibold font-['Inter'] leading-tight">
             {status === STREAM_STATUS.LIVE

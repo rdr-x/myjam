@@ -1,11 +1,12 @@
-'use client';
-import { FC } from "react";
-import { liveStreams, upcomingStreams } from "@/components/Stream/data";
-import { StreamCard } from "@/components/Stream";
+'use client'
+import { FC } from 'react'
+// import { liveStreams, upcomingStreams } from "@/components/Stream/data";
+import { StreamCard } from '@/components/Stream'
 const ViewPage: FC = () => {
   return (
-      <div className="flex flex-col items-center w-[100vw] h-[100vh] mt-[5rem]">
-          <div className="flex flex-col items-center w-[80vw]">
+    <div className="flex flex-col items-center w-[100vw] h-[100vh] mt-[5rem]">
+      View
+      {/* <div className="flex flex-col items-center w-[80vw]">
               <h1 className="self-start  text-white text-3xl font-medium mb-[1.7rem] ml-[2.5rem]">Live Streams</h1>
               <div className="grid grid-cols-3 row-2 gap-[1rem]">
                   {liveStreams.map((stream) => {
@@ -40,9 +41,9 @@ const ViewPage: FC = () => {
                         );
                     })}
               </div>
-          </div>
-      </div>
-  );
-};
+          </div> */}
+    </div>
+  )
+}
 
-export default ViewPage;
+export default ViewPage
