@@ -1,8 +1,8 @@
-import { FC, ReactNode, use } from 'react'
-import { Broadcast } from '@livepeer/react'
-import { useAtom } from 'jotai'
-import { toggleShowBoardAtom } from '../Board'
-import PushChat from '@/modules/PushChat'
+import { FC, ReactNode, use } from 'react';
+import { Broadcast } from '@livepeer/react';
+import { useAtom } from 'jotai';
+import { toggleShowBoardAtom } from '../Board';
+import PushChat from '@/modules/PushChat';
 
 interface PlayerProps {
   children?: ReactNode

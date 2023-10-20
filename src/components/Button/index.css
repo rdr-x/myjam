@@ -32,6 +32,15 @@
   @apply bg-[#ffffff] text-[#000000];
 }
 
+.fui-button--contained.fui-button--amber {
+  @apply bg-[#fde694] text-[#000];
+}
+
 .fui-button--contained.fui-button--white:hover {
   @apply bg-[rgba(255,255,255,0.12);] text-[#ffffff];
 }
+
+.fui-button--contained.fui-button--amber:hover {
+  @apply bg-[rgba(255,255,255,0.12);] text-[#000];
+}
+

@@ -2,6 +2,8 @@
 import { useCreateStream, Player } from '@livepeer/react'
 import { FC, useEffect, useState, ReactNode, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { useAtom } from 'jotai'
+import { streamState, StreamObject } from '@/services/stream'
 import Button from '../Button'
 import { PushAuthCon } from '@/modules/AuthCon'
 import { useCreateReciever } from '@/services/monetize'
@@ -47,9 +49,9 @@ const CreateStream: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!stream) return
-    const { name, streamKey } = stream
+    const { name, streamKey, id } = stream
     router.push(
-      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatId}`
+      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatId}&id=${id}`
     )
   }, [stream, chatId])
 
