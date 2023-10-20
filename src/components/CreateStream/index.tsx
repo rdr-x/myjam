@@ -16,6 +16,7 @@ interface Props {
 }
 
 const CreateStream: FC<Props> = ({ children }) => {
+  const [, setCurrentStream] = useAtom(streamState)
   const [streamName, setStreamName] = useState<string>('')
   const [chatId, setChatId] = useState<string>('')
   //TODO: monetize option

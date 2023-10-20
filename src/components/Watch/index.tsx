@@ -1,10 +1,9 @@
 'use client'
-import { FC, useEffect, useState } from 'react'
-import { useStream, Stream, Player } from '@livepeer/react'
+import { FC, useEffect } from 'react'
+import { useStream, Player } from '@livepeer/react'
 import { usePathname } from 'next/navigation'
 import { useAtom } from 'jotai'
-import { streamState, StreamObject, STREAM_STATUS } from '@/services/stream'
-import { StreamFeatures } from '@/components/StreamFeatures'
+import { streamState } from '@/services/stream'
 import Button from '@/components/Button'
 
 const Watch: FC = () => {

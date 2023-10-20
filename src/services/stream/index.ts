@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import { Stream } from "@livepeer/react"
+import { Stream } from '@livepeer/react'
 
 export enum STREAM_STATUS {
   LIVE = 'Live now',
@@ -32,7 +32,7 @@ const streamState = atom<Stream | null>(null)
 export const liveStreams: Streams[] = [
   {
     id: 1,
-    streamer: 'Live Stream 1',
+    streamer: 'Ethereum Mexico',
     description:
       'Wanna share one of our newest albums. Join to be the firs one hearing it out!',
     audience: 1300000,
@@ -41,7 +41,7 @@ export const liveStreams: Streams[] = [
   },
   {
     id: 1,
-    streamer: 'Live Stream 1',
+    streamer: 'Ceci',
     description:
       'Wanna share one of our newest albums. Join to be the firs one hearing it out!',
     audience: 1000,
@@ -50,7 +50,7 @@ export const liveStreams: Streams[] = [
   },
   {
     id: 1,
-    streamer: 'Live Stream 1',
+    streamer: 'Ricy',
     description:
       'Wanna share one of our newest albums. Join to be the firs one hearing it out!',
     audience: 2400,
@@ -59,7 +59,7 @@ export const liveStreams: Streams[] = [
   },
   {
     id: 1,
-    streamer: 'Live Stream 1',
+    streamer: 'Live coding',
     description:
       'Wanna share one of our newest albums. Join to be the firs one hearing it out!',
     audience: 150,
@@ -68,7 +68,7 @@ export const liveStreams: Streams[] = [
   },
   {
     id: 1,
-    streamer: 'Live Stream 1',
+    streamer: 'EthOnline',
     description:
       'Wanna share one of our newest albums. Join to be the firs one hearing it out!',
     audience: 4322,
@@ -77,7 +77,7 @@ export const liveStreams: Streams[] = [
   },
   {
     id: 1,
-    streamer: 'Live Stream 1',
+    streamer: 'Devconnect',
     description:
       'Wanna share one of our newest albums. Join to be the firs one hearing it out!',
     audience: 23400,
