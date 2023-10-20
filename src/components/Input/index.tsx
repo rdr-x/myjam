@@ -10,6 +10,7 @@ export type Props = OverWrite<
     error?: boolean
     inputClassName?: string
     lableClassName?: string
+    icon?: React.ReactNode
   }
 >
 
@@ -24,6 +25,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       title,
       type,
       onChange,
+      icon,
       ...props
     },
     ref
@@ -65,6 +67,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
               autoFocus
               {...props}
             />
+            {icon}
             <div className={cx(style.balanceInput_errorBorder)} />
           </div>
         </div>

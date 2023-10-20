@@ -1,5 +1,5 @@
 'use client'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useCallback } from 'react'
 import { useAtomValue, useAtom } from 'jotai'
 import Button from '@/components/Button'
 import { accountAtom, useConnect } from '@/services/account'
@@ -42,6 +42,13 @@ export const PermissionAuthCon: React.FC<
 > = ({ children, chatid, ...props }) => {
   const permissed = useAtomValue(permissionAtom)
   const [, checkPermission] = useAtom(checkPermissionAtom)
+  const handleJoin = useCallback(async () => {
+    try {
+      const res = await checkPermission(chatid)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
   if (permissed) return <>{children}</>
   return (
     <Button fullWidth onClick={() => checkPermission(chatid)} {...props}>

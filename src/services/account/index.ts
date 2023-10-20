@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { atom, useAtomValue, useSetAtom } from 'jotai'
+import { atom, useAtomValue, useSetAtom, useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
 import {
@@ -28,7 +28,7 @@ export const walletAddressAtom = atomWithStorage<string | null>(
 
 //TODO: rewrite with writeonly-atom
 export const useConnect = () => {
-  const wallet = useAtomValue(walletAtom)
+  const [wallet, setWallet] = useAtom(walletAtom)
   const walletAddress = useAtomValue(walletAddressAtom)
   const setAccount = useSetAtom(accountAtom)
 
@@ -41,7 +41,8 @@ export const useConnect = () => {
         return
       }
       await wallet.connect()
-      const generatedAddress = await wallet.getAddress()
+      const generatedAddress = wallet.getAddress()
+      setWallet(wallet)
       setAccount(generatedAddress)
     } catch (err) {
       throw err

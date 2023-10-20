@@ -1,6 +1,11 @@
 import { useCallback } from 'react'
 import { atom, useAtomValue } from 'jotai'
-import { PushAPI, Env, IMessageIPFS } from '@pushprotocol/restapi'
+import {
+  PushAPI,
+  Env,
+  IMessageIPFS,
+  ConditionType,
+} from '@pushprotocol/restapi'
 import { ethers } from 'ethers'
 
 export const pushAccountAtom = atom<PushAPI | null>(null)
@@ -28,26 +33,76 @@ export const initializePushAtom = atom(null, async (get, set) => {
 
 export const useCreatePushGroup = () => {
   const pushAccount = useAtomValue(pushAccountAtom)
+  const pushAddress = useAtomValue(pushAddressAtom)
 
-  const createPushGroup = useCallback(
-    async (groupName: string) => {
+  const createPushGroup = useCallback(async () => {
+    try {
+      if (!pushAccount) throw new Error('Please initialize push account')
+      let groupName = new Date()
+        .getTime()
+        .toString()
+        .concat(pushAddress ?? '')
+      const groupRes = await pushAccount.chat.group.create(
+        groupName.slice(0, 50),
+        {
+          description: 'MyJam chatting group',
+          image: 'data:image/png;base64,iVBORw0K...',
+          members: [
+            '0x2E7A81e310ef354005fC125734665Ab691e1577B',
+            '0x85fd869ee184aDfcC1691Df04907b584F47d45aD',
+            '0x2f0c8cE87Bf9FBC5DB6c7401Ee911a1bD4AEA0B9',
+          ],
+          admins: [],
+          private: false,
+          rules: {
+            entry: { conditions: [] },
+            chat: { conditions: [] },
+          },
+        }
+      )
+      return groupRes.chatId
+    } catch (err) {
+      throw err
+    }
+  }, [pushAccount, pushAddress])
+
+  const createGatedPushGroup = useCallback(
+    async (tokenAdd: string) => {
       try {
         if (!pushAccount) throw new Error('Please initialize push account')
+        let groupName = new Date()
+          .getTime()
+          .toString()
+          .concat(pushAddress ?? '')
         const groupRes = await pushAccount.chat.group.create(
           groupName.slice(0, 50),
           {
-            description: 'MyJam chatting group',
+            description: 'MyJam gated chatting group',
             image: 'data:image/png;base64,iVBORw0K...',
-            members: [
-              '0x2E7A81e310ef354005fC125734665Ab691e1577B',
-              '0x85fd869ee184aDfcC1691Df04907b584F47d45aD',
-              '0x2f0c8cE87Bf9FBC5DB6c7401Ee911a1bD4AEA0B9',
-            ],
+            members: [],
             admins: [],
             private: false,
             rules: {
               entry: { conditions: [] },
-              chat: { conditions: [] },
+              chat: {
+                conditions: [
+                  {
+                    any: [
+                      {
+                        type: 'PUSH' as ConditionType,
+                        category: 'ERC20',
+                        subcategory: 'holder',
+                        data: {
+                          contract: `eip155:80001:${tokenAdd}`,
+                          comparison: '>=',
+                          amount: 1,
+                          decimals: 18,
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             },
           }
         )
@@ -56,10 +111,10 @@ export const useCreatePushGroup = () => {
         throw err
       }
     },
-    [pushAccount]
+    [pushAccount, pushAddress]
   )
 
-  return { createPushGroup }
+  return { createPushGroup, createGatedPushGroup }
 }
 
 export const fetchHistoryAtom = atom(null, async (get, set, chatId: string) => {
@@ -90,8 +145,9 @@ export const checkPermissionAtom = atom(
       if (permissionRes.entry && permissionRes.chat) {
         await pushAccount.chat.group.join(chatId)
         set(permissionAtom, true)
+        return true
       } else {
-        throw new Error('You do not have permission to access this group')
+        return false
       }
     } catch (err) {
       throw err

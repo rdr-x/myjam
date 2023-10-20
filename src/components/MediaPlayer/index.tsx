@@ -7,15 +7,19 @@ import PushChat from '@/modules/PushChat'
 interface PlayerProps {
   children?: ReactNode
   title?: string
-  streamKey: string | undefined
+  streamKey?: string
 }
 
 //TODO: this should be moved to page
-const MediaPlayer: FC<PlayerProps> = ({ title, streamKey }) => {
+const MediaPlayer: FC<PlayerProps & { chatId: string | null }> = ({
+  title,
+  streamKey,
+  chatId,
+}) => {
   return (
     <section className="px-[32px] grid sm:grid-cols-[2.33fr,1fr] gap-y-[16px] sm:gap-x-[32px] w-full h-full min-h-[calc(100vh-80px)]">
       <Streaming title={title} streamKey={streamKey} />
-      <PushChat chatid="9c950af0651a8533c0ce7fdd06362864d1fef7f6ede459e1283d5f30091ba609" />
+      <PushChat chatid={chatId} />
     </section>
   )
 }

@@ -2,6 +2,10 @@
 import { useCreateStream, Player } from '@livepeer/react'
 import { FC, useEffect, useState, ReactNode, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Button from '../Button'
+import { PushAuthCon } from '@/modules/AuthCon'
+import { useCreateReciever } from '@/services/monetize'
+import { useCreatePushGroup } from '@/services/push'
 import TextArea from '../TextArea'
 
 interface Props {
@@ -11,6 +15,11 @@ interface Props {
 
 const CreateStream: FC<Props> = ({ children }) => {
   const [streamName, setStreamName] = useState<string>('')
+  const [chatId, setChatId] = useState<string>('')
+  //TODO: monetize option
+  const [monetize, setMonetize] = useState(false)
+  const { createReciever } = useCreateReciever()
+  const { createPushGroup, createGatedPushGroup } = useCreatePushGroup()
   const router = useRouter()
 
   const {
@@ -19,11 +28,30 @@ const CreateStream: FC<Props> = ({ children }) => {
     status,
   } = useCreateStream({ name: streamName })
 
+  const handleCreateStream = useCallback(async () => {
+    try {
+      let chatId: string
+      if (monetize) {
+        const reciever = await createReciever?.()
+        if (!reciever) throw new Error('failed to create reciever contract')
+        chatId = await createGatedPushGroup?.(reciever)
+      } else {
+        chatId = await createPushGroup?.()
+      }
+      setChatId(chatId)
+      createStream?.()
+    } catch (err) {
+      console.log(err)
+    }
+  }, [createStream])
+
   useEffect(() => {
     if (!stream) return
     const { name, streamKey } = stream
-    router.push(`/stream/live?title=${name}&streamKey=${streamKey}`)
-  }, [stream])
+    router.push(
+      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatId}`
+    )
+  }, [stream, chatId])
 
   return (
     <div className="pb-[32px] flex justify-center items-center w-full h-full">
@@ -40,6 +68,9 @@ const CreateStream: FC<Props> = ({ children }) => {
             onChange={(e) => setStreamName(e.target.value)}
           />
         </div>
+        <PushAuthCon>
+          <Button onClick={handleCreateStream}>greate Gated stream</Button>
+        </PushAuthCon>
 
         <div>
           <button
