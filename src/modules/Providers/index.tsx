@@ -43,6 +43,7 @@ export const PushProvider: React.FC<{ children: ReactNode }> = ({
       env: 'staging' as Env,
     })
     if (!pushSDKSocket) return
+    // TODO:
     pushSDKSocket.on(EVENTS.CHAT_RECEIVED_MESSAGE, (message) => {
       setPushMessages((messages) => [...messages, message.messageObj.content])
     })

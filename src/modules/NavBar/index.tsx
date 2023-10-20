@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
   }, [curPath])
 
   return (
-    <header className="fixed left-0 top-0 flex flex-row justify-between w-full h-[80px] bg-transparent z-1000">
+    <header className="fixed left-0 top-0 flex flex-row justify-between w-full h-[80px] bg-transparent z-[1000]">
       <Mobile
         open={isMobileMenuOpen}
         curPath={curPath === '/' ? 'home' : curPath}

@@ -22,7 +22,6 @@ const ClipBoard: React.FC<ComponentProps<'button'> & ClipBoardProps> = ({
   }, [])
 
   return (
-    // TODO: control Tooltip
     <ToolTip text={'copied'} trigger="hover" controledOpen={isCopied}>
       <FunctionButton
         curPath={isHovering}
