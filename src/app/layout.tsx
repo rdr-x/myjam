@@ -24,7 +24,7 @@ export default function RootLayout({
           <ToastRender />
           <Navbar />
           <Providers>
-            <div className="relative top-[80px] min-h-[calc(100vh-80px)]">
+            <div className="relative mt-[80px] min-h-[calc(100vh-80px)] z-[-1]">
               {children}
             </div>
           </Providers>

@@ -1,15 +1,11 @@
 'use client'
 import { FC, useEffect } from 'react'
 import { useStream, Player } from '@livepeer/react'
-import { usePathname } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { streamState } from '@/services/stream'
-import Button from '@/components/Button'
 
-const Watch: FC = () => {
+const Watch: FC<{ streamId: string }> = ({ streamId }) => {
   const [currentStream, setCurrentStream] = useAtom(streamState)
-  const path = usePathname()
-  const streamId = path.split('/view/')[1]
 
   const { data: stream } = useStream(streamId)
 
@@ -21,7 +17,7 @@ const Watch: FC = () => {
   }, [stream])
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center grow">
       <h1 className="text-white lg:text-4xl sm:text-xl font-semibold leading-[30px]">
         Watch {currentStream?.name}
       </h1>
@@ -39,7 +35,7 @@ const Watch: FC = () => {
       <span className="text-white text-base font-normal leading-normal">
         Live streaming description! New album coming soon!
       </span>
-      <Button color="amber">Donate</Button>
+      {/* <Button color="amber">Donate</Button> */}
     </div>
   )
 }
