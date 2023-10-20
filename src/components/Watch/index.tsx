@@ -21,27 +21,35 @@ const Watch: FC = () => {
     },[stream]);
 
     return (
-        <div className="flex flex-col justify-center items-center">
-            <h1 className="text-white lg:text-4xl sm:text-xl font-semibold leading-[30px]">Watch {currentStream?.name}</h1>
-            <StreamFeatures
-                status={liveStreams[0]?.status}
-                audience={liveStreams[0]?.audience}
-            />
-            <Player
-                showTitle
-                priority
-                lowLatency
-                title={currentStream?.name}
-                playbackId={currentStream?.playbackId}
-            />
-            <span className="text-white text-base font-normal leading-normal">
+        <div className="flex flex-col justify-center items-center pl-[2rem] gap-2">
+            <h1 className="self-start text-white lg:text-4xl sm:text-xl font-semibold leading-[30px]">Watch {currentStream?.name}</h1>
+            <div className="self-start">
+                <StreamFeatures
+                    status={liveStreams[0]?.status}
+                    audience={liveStreams[0]?.audience}
+                />
+            </div>
+            <div className="self-start">
+                <Player
+                    showTitle
+                    priority
+                    lowLatency
+                    title={currentStream?.name}
+                    playbackId={currentStream?.playbackId}
+                    aspectRatio="16:9"
+                    objectFit="cover"
+                />
+            </div>
+            <span className="self-start text-white text-base font-normal leading-normal">
                 Live streaming description! New album coming soon!
             </span>
-            <Button
-                color="amber"
-            >
-                Donate
-            </Button>
+            <div className="self-start">
+                <Button
+                    color="amber"
+                >
+                    Donate
+                </Button>
+            </div>
         </div>
     );
 }
