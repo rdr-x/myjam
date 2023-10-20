@@ -26,6 +26,7 @@
     "ethers": "^5.7",
     "jotai": "^2.4.3",
     "jotai-tanstack-query": "^0.7.2",
+    "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "next": "13.4.13-canary.5",
     "postcss": "8.4.26",
