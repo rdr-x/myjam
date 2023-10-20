@@ -18,10 +18,10 @@ interface Props {
 const CreateStream: FC<Props> = ({ children }) => {
   const [, setCurrentStream] = useAtom(streamState)
   const [streamName, setStreamName] = useState<string>('')
-  const [chatId, setChatId] = useState<string>('')
+  const [chatid, setchatid] = useState<string>('')
   const [contractAddr, setContractAddr] = useState<string>('')
   //TODO: monetize option
-  const [monetize, setMonetize] = useState(true)
+  const [monetize, setMonetize] = useState(false)
   const { createReciever } = useCreateReciever()
   const { createPushGroup, createGatedPushGroup } = useCreatePushGroup()
   const router = useRouter()
@@ -34,16 +34,16 @@ const CreateStream: FC<Props> = ({ children }) => {
 
   const handleCreateStream = useCallback(async () => {
     try {
-      let chatId: string
+      let chatid: string
       if (monetize) {
         const reciever = await createReciever?.()
         if (!reciever) throw new Error('failed to create reciever contract')
-        chatId = await createGatedPushGroup?.(reciever)
+        chatid = await createGatedPushGroup?.(reciever)
         setContractAddr(reciever)
       } else {
-        chatId = await createPushGroup?.()
+        chatid = await createPushGroup?.()
       }
-      setChatId(chatId)
+      setchatid(chatid)
       createStream?.()
     } catch (err) {
       console.log(err)
@@ -54,9 +54,9 @@ const CreateStream: FC<Props> = ({ children }) => {
     if (!stream) return
     const { name, streamKey, id } = stream
     router.push(
-      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatId}&id=${id}&contractAddr=${contractAddr}`
+      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatid}&id=${id}&contractAddr=${contractAddr}`
     )
-  }, [stream, chatId])
+  }, [stream, chatid])
 
   return (
     <div className="pb-[32px] flex justify-center items-center w-full h-full">

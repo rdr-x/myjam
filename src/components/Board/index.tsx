@@ -30,7 +30,7 @@ const Board: React.FC<HTMLAttributes<HTMLDivElement> & Props> = ({
   return (
     <div
       className={cx(
-        'p-[24px] text-[16px] leading-[24px] rounded-[12px] border-[1px] border-solid border-[#ffffff] bg-[rgba(255,255,255,0.08)] backdrop-blur-[24px]',
+        'p-[24px] max-h-[600px] text-[16px] leading-[24px] rounded-[12px] border-[1px] border-solid border-[#ffffff] bg-[rgba(255,255,255,0.08)] backdrop-blur-[24px] overflow-y-scroll',
         'pb-20px',
         !showBoard && 'hidden',
         className

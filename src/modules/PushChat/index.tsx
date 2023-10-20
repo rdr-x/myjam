@@ -8,16 +8,24 @@ import {
   pushAccountAtom,
   pushMessagesAtom,
   fetchHistoryAtom,
+  chatidAtom,
+  // polledMessagesAtom,
 } from '@/services/push'
 import { PushAuthCon, PermissionAuthCon } from '../AuthCon'
 
 const PushChat: React.FC<{ chatid: string | null }> = ({ chatid }) => {
+  const [, setchatid] = useAtom(chatidAtom)
+  //TODO: This is due to debugging
+  useEffect(() => {
+    setchatid(chatid)
+  }, [])
   if (!chatid) return <PushChatBoundary />
   return <PushChatCon chatid={chatid} />
 }
 
 const PushChatCon: React.FC<{ chatid: string }> = ({ chatid }) => {
   const [, fetchHistory] = useAtom(fetchHistoryAtom)
+  // const [polledMessage] = useAtom(polledMessagesAtom)
   const pushAccount = useAtomValue(pushAccountAtom)
   const pushMessages = useAtomValue(pushMessagesAtom)
 
@@ -54,7 +62,7 @@ const PushChatBoundary: React.FC = () => {
       <div className="flex flex-col justify-between grow">
         <div className="flex-col gap-y-[25px]">
           <div className="text-16px leading-24px text-[#ffffff]">
-            Failed to fetch chatId
+            Failed to fetch chatid
           </div>
         </div>
       </div>

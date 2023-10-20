@@ -19,7 +19,7 @@ const FunctionBar: React.FC<FunctionBarProps & ComponentProps<'div'>> = ({
   const [showBoard, toggleShowBaord] = useAtom(toggleShowBoardAtom)
   //TODO: move to jotai
   const searchParams = useSearchParams()
-  const chatId = searchParams.get('chatid')
+  const chatid = searchParams.get('chatid')
   const contractAddr = searchParams.get('contractAddr')
 
   return (
@@ -28,7 +28,7 @@ const FunctionBar: React.FC<FunctionBarProps & ComponentProps<'div'>> = ({
       {...props}
     >
       <ClipBoard
-        content={`${DOMAIN}view/${id}?chatid=${chatId}&contractAddr=${contractAddr}`}
+        content={`${DOMAIN}view/${id}?chatid=${chatid}&contractAddr=${contractAddr}`}
       />
       <FunctionButton curPath={showBoard} onClick={toggleShowBaord}>
         <ChatIcon curPath={showBoard} />

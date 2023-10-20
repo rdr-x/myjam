@@ -13,11 +13,11 @@ interface PlayerProps {
   title?: string
   streamKey?: string
   id?: string
-  chatId: string | null
+  chatid: string | null
 }
 
 //TODO: this should be moved to page
-const MediaPlayer: FC<PlayerProps> = ({ title, streamKey, chatId, id }) => {
+const MediaPlayer: FC<PlayerProps> = ({ title, streamKey, chatid, id }) => {
   const [showBoard] = useAtom(toggleShowBoardAtom)
 
   return (
@@ -27,14 +27,14 @@ const MediaPlayer: FC<PlayerProps> = ({ title, streamKey, chatId, id }) => {
         showBoard ? 'sm:grid-cols-[2.33fr,1fr]' : 'sm:grid-cols-[1fr,0fr]'
       )}
     >
-      <Streaming title={title} streamKey={streamKey} id={id} chatId={chatId} />
-      <PushChat chatid={chatId} />
+      <Streaming title={title} streamKey={streamKey} id={id} chatid={chatid} />
+      <PushChat chatid={chatid} />
     </div>
   )
 }
 
 //TODO: animation for collapse
-const Streaming: FC<PlayerProps> = ({ title, streamKey, id, chatId }) => {
+const Streaming: FC<PlayerProps> = ({ title, streamKey, id, chatid }) => {
   const [showBoard, toggleShowBaord] = useAtom(toggleShowBoardAtom)
 
   return (
@@ -51,7 +51,7 @@ const Streaming: FC<PlayerProps> = ({ title, streamKey, id, chatId }) => {
         />
       </div>
       <div className="mt-[27px] flex flex-row items-center justify-center gap-x-[12px]">
-        <FunctionBar id={id} chatId={chatId} />
+        <FunctionBar id={id} chatid={chatid} />
       </div>
     </section>
   )

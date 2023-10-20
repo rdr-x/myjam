@@ -7,11 +7,13 @@ import {
   ConditionType,
 } from '@pushprotocol/restapi'
 import { ethers } from 'ethers'
+import { atomsWithQuery } from 'jotai-tanstack-query'
 
 export const pushAccountAtom = atom<PushAPI | null>(null)
 export const pushAddressAtom = atom<string | null>(null)
 export const pushMessagesAtom = atom<string[]>([])
 export const permissionAtom = atom<boolean>(false)
+export const chatidAtom = atom<string | null>(null)
 
 export const initializePushAtom = atom(null, async (get, set) => {
   try {
@@ -113,15 +115,16 @@ export const useCreatePushGroup = () => {
   return { createPushGroup, createGatedPushGroup }
 }
 
-export const fetchHistoryAtom = atom(null, async (get, set, chatId: string) => {
+export const fetchHistoryAtom = atom(null, async (get, set, chatid: string) => {
   try {
     if (typeof window === 'undefined') return
     const pushAccount = get(pushAccountAtom)
-    if (!pushAccount || !chatId) return
+    if (!pushAccount || !chatid) return
     // throw new Error('Please initialize push account')
-    const historyRes = await pushAccount.chat.history(chatId)
+    const historyRes = await pushAccount.chat.history(chatid)
     const historyMessages: string[] = []
-    historyRes.forEach((message) => {
+    const orderedHisRes = historyRes.reverse()
+    orderedHisRes.forEach((message) => {
       historyMessages.push(message.messageContent)
     })
     set(pushMessagesAtom, [...historyMessages])
@@ -132,14 +135,14 @@ export const fetchHistoryAtom = atom(null, async (get, set, chatId: string) => {
 
 export const checkPermissionAtom = atom(
   null,
-  async (get, set, chatId: string) => {
+  async (get, set, chatid: string) => {
     try {
       const pushAccount = get(pushAccountAtom)
-      if (!pushAccount || !chatId)
+      if (!pushAccount || !chatid)
         throw new Error('Please initialize push account')
-      const permissionRes = await pushAccount.chat.group.permissions(chatId)
+      const permissionRes = await pushAccount.chat.group.permissions(chatid)
       if (permissionRes.entry && permissionRes.chat) {
-        await pushAccount.chat.group.join(chatId)
+        await pushAccount.chat.group.join(chatid)
         set(permissionAtom, true)
         return true
       } else {
@@ -150,3 +153,19 @@ export const checkPermissionAtom = atom(
     }
   }
 )
+
+// export const [polledMessagesAtom] = atomsWithQuery<string[]>((get) => ({
+//   queryKey: ['polledMessages', get(pushAccountAtom)],
+//   queryFn: async () => {
+//     const pushAccount = get(pushAccountAtom)
+//     const chatid = get(chatidAtom)
+//     if (!pushAccount || !chatid) return []
+//     const messages: string[] = []
+//     const historyRes = await pushAccount.chat.history(chatid)
+//     historyRes.forEach((message) => {
+//       messages.push(message.messageContent)
+//     })
+//     return messages
+//   },
+//   refetchInterval: 1000,
+// }))

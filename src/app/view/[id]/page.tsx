@@ -25,7 +25,7 @@ const StreamPage: FC = () => {
       {/* <SideEvents /> */}
       <div className="flex flex-col grow">
         <Watch streamId={params.id as string} />
-        <FunctionBar chatId={chatid} id={params.id as string} />
+        <FunctionBar id={params.id as string} />
       </div>
       <PushChat chatid={chatid} />
     </div>

@@ -12,7 +12,7 @@ const LivePage: React.FC = () => {
 
   return (
     <MediaPlayer
-      chatId={chatid}
+      chatid={chatid}
       title={title ?? ''}
       streamKey={streamKey ?? ''}
       id={id ?? ''}

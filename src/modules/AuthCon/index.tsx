@@ -1,5 +1,6 @@
 'use client'
 import { PropsWithChildren, useCallback } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useAtomValue, useAtom } from 'jotai'
 import Button from '@/components/Button'
 import { accountAtom, useConnect } from '@/services/account'
@@ -39,10 +40,12 @@ export const PushAuthCon: React.FC<PropsWithChildren> = ({
 }
 
 export const PermissionAuthCon: React.FC<
-  PropsWithChildren & { chatid: string; contractAddr: string | null }
-> = ({ children, chatid, contractAddr, ...props }) => {
+  PropsWithChildren & { chatid: string }
+> = ({ children, chatid, ...props }) => {
   const permissed = useAtomValue(permissionAtom)
   const [, checkPermission] = useAtom(checkPermissionAtom)
+  const searchParams = useSearchParams()
+  const contractAddr = searchParams.get('contractAddr')
   const { mint } = useMintTokens()
   const handleJoin = useCallback(async () => {
     try {

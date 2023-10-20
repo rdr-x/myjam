@@ -25,14 +25,13 @@ const Watch: FC<{ streamId: string }> = ({ streamId }) => {
                 status={currentStream?.status}
                 audience={currentStream?.audience}
             /> */}
-      {/* TODO: */}
-      {/* <Player
+      <Player
         showTitle
         priority
         lowLatency
         title={currentStream?.name}
         playbackId={currentStream?.playbackId}
-      /> */}
+      />
       <span className="text-white text-base font-normal leading-normal">
         Live streaming description! New album coming soon!
       </span>
