@@ -10,7 +10,6 @@ const Watch: FC = () => {
   const [currentStream, setCurrentStream] = useAtom(streamState)
   const path = usePathname()
   const streamId = path.split('/view/')[1]
-  console.log('streamId', streamId)
 
   const { data: stream } = useStream(streamId)
 

@@ -3,12 +3,9 @@ import { FC, ReactNode } from 'react'
 import { Broadcast } from '@livepeer/react'
 import { useAtom } from 'jotai'
 import cx from 'clsx'
-import { ChatIcon } from '@/components/Icons'
 import { toggleShowBoardAtom } from '../Board'
-import FunctionButton from '@/modules/FunctionBtn'
-import ClipBoard from '@/modules/ClipBoard'
 import PushChat from '@/modules/PushChat'
-import { DOMAIN } from '@/utils/constants'
+import FunctionBar from '@/modules/FunctionBar'
 
 //TODO: minimize&optimization
 interface PlayerProps {
@@ -54,10 +51,7 @@ const Streaming: FC<PlayerProps> = ({ title, streamKey, id, chatId }) => {
         />
       </div>
       <div className="mt-[27px] flex flex-row items-center justify-center gap-x-[12px]">
-        <ClipBoard content={`${DOMAIN}view/${id}&chatid=${chatId}`} />
-        <FunctionButton curPath={showBoard} onClick={toggleShowBaord}>
-          <ChatIcon curPath={showBoard} />
-        </FunctionButton>
+        <FunctionBar id={id} chatId={chatId} />
       </div>
     </section>
   )
