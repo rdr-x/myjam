@@ -13,9 +13,10 @@
   "dependencies": {
     "@cometh/connect-sdk": "^1.1.1",
     "@floating-ui/react": "^0.26.1",
+    "@livepeer/react": "^2.9.1",
     "@pushprotocol/restapi": "^1.4.24",
     "@pushprotocol/socket": "^0.5.2",
-    "@livepeer/react": "^2.9.1",
+    "@react-spring/web": "^9.7.3",
     "@tanstack/query-core": "^4.36.1",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
@@ -32,6 +33,7 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "^4.0.11",
     "react-hook-form": "^7.47.0",
+    "react-use-clipboard": "^1.0.9",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
   },

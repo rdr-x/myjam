@@ -1,37 +1,51 @@
-import { FC, ReactNode, use } from 'react';
-import { Broadcast } from '@livepeer/react';
-import { useAtom } from 'jotai';
-import { toggleShowBoardAtom } from '../Board';
-import PushChat from '@/modules/PushChat';
+'use client'
+import { FC, ReactNode } from 'react'
+import { Broadcast } from '@livepeer/react'
+import { useAtom } from 'jotai'
+import cx from 'clsx'
+import { ChatIcon } from '@/components/Icons'
+import { toggleShowBoardAtom } from '../Board'
+import FunctionButton from '@/modules/FunctionBtn'
+import ClipBoard from '@/modules/ClipBoard'
+import PushChat from '@/modules/PushChat'
+import { DOMAIN } from '@/utils/constants'
 
+//TODO: minimize&optimization
 interface PlayerProps {
   children?: ReactNode
   title?: string
   streamKey?: string
+  id?: string
+  chatId: string | null
 }
 
 //TODO: this should be moved to page
-const MediaPlayer: FC<PlayerProps & { chatId: string | null }> = ({
-  title,
-  streamKey,
-  chatId,
-}) => {
+const MediaPlayer: FC<PlayerProps> = ({ title, streamKey, chatId, id }) => {
+  const [showBoard] = useAtom(toggleShowBoardAtom)
+
   return (
-    <section className="px-[32px] grid sm:grid-cols-[2.33fr,1fr] gap-y-[16px] sm:gap-x-[32px] w-full h-full min-h-[calc(100vh-80px)]">
-      <Streaming title={title} streamKey={streamKey} />
+    <div
+      className={cx(
+        'px-[32px] grid gap-y-[16px] sm:gap-x-[32px] w-full h-full min-h-[calc(100vh-80px)]',
+        showBoard ? 'sm:grid-cols-[2.33fr,1fr]' : 'sm:grid-cols-[1fr,0fr]'
+      )}
+    >
+      <Streaming title={title} streamKey={streamKey} id={id} chatId={chatId} />
       <PushChat chatid={chatId} />
-    </section>
+    </div>
   )
 }
 
-const Streaming: FC<PlayerProps> = ({ title, streamKey }) => {
-  const [, toggleShowBaord] = useAtom(toggleShowBoardAtom)
+//TODO: animation for collapse
+const Streaming: FC<PlayerProps> = ({ title, streamKey, id, chatId }) => {
+  const [showBoard, toggleShowBaord] = useAtom(toggleShowBoardAtom)
+
   return (
     <section className="flex flex-col grow items-center justify-start">
       <h1 className="mb-[.5rem] text-center text-white text-4xl font-semibold leading-[54px]">
         {title}
       </h1>
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex justify-center items-center w-full h-fit">
         <Broadcast
           streamKey={streamKey}
           controls={{ autohide: 0, hotKey: false, defaultVolume: 0.6 } as any}
@@ -39,7 +53,12 @@ const Streaming: FC<PlayerProps> = ({ title, streamKey }) => {
           objectFit="cover"
         />
       </div>
-      <button onClick={toggleShowBaord}>toggle</button>
+      <div className="mt-[27px] flex flex-row items-center justify-center gap-x-[12px]">
+        <ClipBoard content={`${DOMAIN}view/${id}&chatid=${chatId}`} />
+        <FunctionButton curPath={showBoard} onClick={toggleShowBaord}>
+          <ChatIcon curPath={showBoard} />
+        </FunctionButton>
+      </div>
     </section>
   )
 }

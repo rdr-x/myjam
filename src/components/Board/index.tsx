@@ -12,10 +12,13 @@ interface Props {
 // const showBoardAtom = atom(false)
 const showBoardAtom = atom(true)
 
-export const toggleShowBoardAtom = atom(null, (get, set) => {
-  const update = !get(showBoardAtom)
-  set(showBoardAtom, update)
-})
+export const toggleShowBoardAtom = atom(
+  (get) => get(showBoardAtom),
+  (get, set) => {
+    const update = !get(showBoardAtom)
+    set(showBoardAtom, update)
+  }
+)
 
 const Board: React.FC<HTMLAttributes<HTMLDivElement> & Props> = ({
   className,

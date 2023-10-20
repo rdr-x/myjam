@@ -17,9 +17,7 @@ const PushChat: React.FC<{ chatid: string | null }> = ({ chatid }) => {
 }
 
 const PushChatCon: React.FC<{ chatid: string }> = ({ chatid }) => {
-  // const { createPushGroup } = useCreatePushGroup()
   const [, fetchHistory] = useAtom(fetchHistoryAtom)
-  // const pushAddress = useAtomValue(pushAddressAtom)
   const pushAccount = useAtomValue(pushAccountAtom)
   const pushMessages = useAtomValue(pushMessagesAtom)
 
@@ -45,9 +43,6 @@ const PushChatCon: React.FC<{ chatid: string }> = ({ chatid }) => {
             <PushSendInput chatid={chatid} />
           </PermissionAuthCon>
         </PushAuthCon>
-        {/* <PushAuthCon>
-          <Button onClick={create}>create</Button>
-        </PushAuthCon> */}
       </div>
     </Board>
   )
@@ -62,9 +57,6 @@ const PushChatBoundary: React.FC = () => {
             Failed to fetch chatId
           </div>
         </div>
-        {/* <PushAuthCon>
-          <Button onClick={create}>create</Button>
-        </PushAuthCon> */}
       </div>
     </Board>
   )

@@ -7,6 +7,7 @@ const LivePage: React.FC = () => {
   const title = searchParams.get('title')
   const streamKey = searchParams.get('streamKey')
   const chatid = searchParams.get('chatid')
+  const id = searchParams.get('id')
   // if (!streamKey) return <div></div>
 
   return (
@@ -14,6 +15,7 @@ const LivePage: React.FC = () => {
       chatId={chatid}
       title={title ?? ''}
       streamKey={streamKey ?? ''}
+      id={id ?? ''}
     />
   )
 }

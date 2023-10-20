@@ -175,3 +175,51 @@ export const SendIcon = () => (
     />
   </svg>
 )
+
+export const ShareIcon: React.FC<IconProps & { curPath: boolean }> = ({
+  className,
+  iconClassName,
+  curPath,
+}) => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      className={cx(
+        iconClassName,
+        curPath ? 'fill-[#1A202C]' : 'fill-[#ffffff]'
+      )}
+      d="M13.333 4.16665L12.1497 5.34998L10.8247 4.02498V13.3333H9.17467V4.02498L7.84967 5.34998L6.66634 4.16665L9.99967 0.833313L13.333 4.16665ZM16.6663 8.33331V17.5C16.6663 18.4166 15.9163 19.1666 14.9997 19.1666H4.99967C4.55765 19.1666 4.13372 18.991 3.82116 18.6785C3.5086 18.3659 3.33301 17.942 3.33301 17.5V8.33331C3.33301 7.40831 4.07467 6.66665 4.99967 6.66665H7.49967V8.33331H4.99967V17.5H14.9997V8.33331H12.4997V6.66665H14.9997C15.4417 6.66665 15.8656 6.84224 16.1782 7.1548C16.4907 7.46736 16.6663 7.89128 16.6663 8.33331Z"
+      fill="white"
+    />
+  </svg>
+)
+
+export const ChatIcon: React.FC<IconProps & { curPath: boolean }> = ({
+  className,
+  iconClassName,
+  curPath,
+}) => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"
+      fill="white"
+      className={cx(
+        iconClassName,
+        curPath ? 'fill-[#1A202C]' : 'fill-[#ffffff]'
+      )}
+    />
+  </svg>
+)

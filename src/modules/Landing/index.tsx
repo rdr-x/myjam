@@ -7,7 +7,7 @@ const LandingPage: FC = () => {
         <div className="flex flex-col justify-left items-center w-[100vw] h-[100vh]">
             <div className="flex justify-left items-center w-[100vw] h-[100vh]">
                 <div>
-                    <img src="/leafs.png" alt="leafs" className="sm:w-full sm:h-full object-cover" />
+                    <img draggable={false} src="/leafs.png" alt="leafs" className="sm:w-full sm:h-full object-cover" />
                 </div>
                 <div className="flex sm:flex-row flex-col justify-center gap-[3rem]">
                     <div className="flex flex-col justify-center w-[22rem] p-0">

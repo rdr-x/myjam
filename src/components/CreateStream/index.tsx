@@ -71,14 +71,10 @@ const CreateStream: FC<Props> = ({ children }) => {
           />
         </div>
         <PushAuthCon>
-          <Button onClick={handleCreateStream}>greate Gated stream</Button>
-        </PushAuthCon>
-
-        <div>
           <button
             className="w-[257px] h-12 px-6 bg-slate-100 rounded-[45px] justify-center items-center gap-2 inline-flex"
             disabled={status === 'loading' || !createStream}
-            onClick={() => createStream?.()}
+            onClick={handleCreateStream}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +92,7 @@ const CreateStream: FC<Props> = ({ children }) => {
               Start JAMin
             </div>
           </button>
-        </div>
+        </PushAuthCon>
       </div>
     </div>
   )

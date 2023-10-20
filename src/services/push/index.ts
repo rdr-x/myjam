@@ -47,11 +47,7 @@ export const useCreatePushGroup = () => {
         {
           description: 'MyJam chatting group',
           image: 'data:image/png;base64,iVBORw0K...',
-          members: [
-            '0x2E7A81e310ef354005fC125734665Ab691e1577B',
-            '0x85fd869ee184aDfcC1691Df04907b584F47d45aD',
-            '0x2f0c8cE87Bf9FBC5DB6c7401Ee911a1bD4AEA0B9',
-          ],
+          members: [],
           admins: [],
           private: false,
           rules: {
