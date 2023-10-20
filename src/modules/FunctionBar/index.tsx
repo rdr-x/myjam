@@ -2,11 +2,12 @@
 import { ComponentProps } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useAtom } from 'jotai'
-import { ChatIcon } from '@/components/Icons'
+import { ChatIcon, TempIcon } from '@/components/Icons'
+import { toggleShowBoardAtom } from '@/components/Board'
 import FunctionButton from '@/modules/FunctionBtn'
 import ClipBoard from '@/modules/ClipBoard'
 import { DOMAIN } from '@/utils/constants'
-import { toggleShowBoardAtom } from '@/components/Board'
+import { fetchHistoryAtom } from '@/services/push'
 
 export interface FunctionBarProps {
   id?: string
@@ -17,6 +18,7 @@ const FunctionBar: React.FC<FunctionBarProps & ComponentProps<'div'>> = ({
   ...props
 }) => {
   const [showBoard, toggleShowBaord] = useAtom(toggleShowBoardAtom)
+  const [, fetchHistory] = useAtom(fetchHistoryAtom)
   //TODO: move to jotai
   const searchParams = useSearchParams()
   const chatid = searchParams.get('chatid')
@@ -32,6 +34,15 @@ const FunctionBar: React.FC<FunctionBarProps & ComponentProps<'div'>> = ({
       />
       <FunctionButton curPath={showBoard} onClick={toggleShowBaord}>
         <ChatIcon curPath={showBoard} />
+      </FunctionButton>
+      <FunctionButton
+        curPath={showBoard}
+        onClick={() => {
+          if (!chatid) return
+          fetchHistory(chatid)
+        }}
+      >
+        <TempIcon curPath={false} />
       </FunctionButton>
     </div>
   )
