@@ -1,15 +1,14 @@
-'use client'
-import { FC, ComponentProps, useState, useEffect } from 'react'
-import { Stream, Player } from '@livepeer/react'
+import { FC, ComponentProps } from 'react'
 import { CreateStream } from '@/components/CreateStream'
+import { BackgroundContainer } from "@/components/BackgroundContainer";
 
 const CreatePage: FC<ComponentProps<any>> = ({ children }) => {
   return (
-    <div className="bg-img h-[calc(100vh-80px)] w-[100vw]">
-      <div className="flex justify-center items-center h-full w-full">
+      <BackgroundContainer>
+      <div className="flex justify-center items-center h-full w-full absolute top-[-25rem] ">
         <CreateStream />
       </div>
-    </div>
+    </BackgroundContainer>
   )
 }
 

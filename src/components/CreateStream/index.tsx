@@ -12,6 +12,7 @@ interface Props {
 }
 
 const CreateStream: FC<Props> = ({ children }) => {
+  const [, setCurrentStream] = useAtom(streamState);
   const [streamName, setStreamName] = useState<string>('')
   const router = useRouter();
 
@@ -23,8 +24,9 @@ const CreateStream: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!stream) return
-    const { name, streamKey, id } = stream;
-    router.push(`/stream/live?title=${name}&streamKey=${streamKey}&id=${id}`);
+    const { name, streamKey, playbackId } = stream;
+    setCurrentStream(stream);
+    router.push(`/stream/live?title=${name}&streamKey=${streamKey}&playbackId=${playbackId}`);
   }, [stream])
 
   return (
