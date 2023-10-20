@@ -51,7 +51,7 @@ const Streaming: FC<PlayerProps> = ({ title, streamKey, id, chatid }) => {
         />
       </div>
       <div className="mt-[27px] flex flex-row items-center justify-center gap-x-[12px]">
-        <FunctionBar id={id} chatid={chatid} />
+        <FunctionBar id={id} />
       </div>
     </section>
   )
