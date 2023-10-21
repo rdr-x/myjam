@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useAtomValue, atom } from 'jotai'
 import { ContractFactory, ethers } from 'ethers'
-// import { ComethProvider } from '@cometh/connect-sdk'
+import { ComethProvider } from '@cometh/connect-sdk'
 import Abi from '@/utils/contract/abi.json'
 import { erc20Bytecodes } from '@/utils/contract/bytecode'
 import { walletAtom, walletAddressAtom } from '../account'
@@ -65,4 +65,29 @@ export const useMintTokens = () => {
   return { mint }
 }
 
-export const useDonate=()=>{}
+export const useDonate = () => {
+  const wallet = useAtomValue(walletAtom)
+  const donate = useCallback(
+    async (recieverAddress: string) => {
+      try {
+        if (typeof window === 'undefined') return
+        if (!wallet) throw new Error('Wallet not found')
+        const provider = new ComethProvider(wallet)
+        const signer = provider.getSigner()
+        const tx = await signer.sendTransaction({
+          to: recieverAddress,
+          value: ethers.utils.parseEther('0.01'),
+          // gasLimit: 100000000,
+        })
+        await tx.wait()
+        alert(`donation success hash: ${tx.hash}`)
+        return tx.hash
+      } catch (err) {
+        throw err
+      }
+    },
+    [wallet]
+  )
+
+  return { donate }
+}

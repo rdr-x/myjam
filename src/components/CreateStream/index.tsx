@@ -2,12 +2,12 @@
 import { useCreateStream, Player } from '@livepeer/react'
 import { FC, useEffect, useState, ReactNode, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { streamState, StreamObject } from '@/services/stream'
 import Switch from 'react-switch'
 import { PushAuthCon } from '@/modules/AuthCon'
 import { useCreateReciever } from '@/services/monetize'
-import { useCreatePushGroup } from '@/services/push'
+import { useCreatePushGroup, pushAddressAtom } from '@/services/push'
 import TextArea from '../TextArea'
 
 interface Props {
@@ -20,6 +20,7 @@ const CreateStream: FC<Props> = ({ children }) => {
   const [streamName, setStreamName] = useState<string>('')
   const [chatid, setchatid] = useState<string>('')
   const [contractAddr, setContractAddr] = useState<string>('')
+  const creatorAddr = useAtomValue(pushAddressAtom)
   //TODO: monetize option
   const [monetize, setMonetize] = useState(false)
   const { createReciever } = useCreateReciever()
@@ -58,7 +59,7 @@ const CreateStream: FC<Props> = ({ children }) => {
     if (!stream) return
     const { name, streamKey, id } = stream
     router.push(
-      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatid}&id=${id}&contractAddr=${contractAddr}`
+      `/stream/live?title=${name}&streamKey=${streamKey}&chatid=${chatid}&id=${id}&contractAddr=${contractAddr}&creatorAddr=${creatorAddr}`
     )
   }, [stream, chatid])
 
@@ -77,7 +78,7 @@ const CreateStream: FC<Props> = ({ children }) => {
             onChange={(e) => setStreamName(e.target.value)}
           />
         </div>
-        <div className="flex flex-row items-center gap-x-[8px]">
+        <div className="flex flex-row items-center gap-x-[8px] text-[16px] text-[#ffffff]">
           monetize:
           <Switch
             onColor="#FF9591"

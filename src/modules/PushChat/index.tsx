@@ -12,6 +12,7 @@ import {
   // polledMessagesAtom,
 } from '@/services/push'
 import { PushAuthCon, PermissionAuthCon } from '../AuthCon'
+import QR from './QR'
 
 const PushChat: React.FC<{ chatid: string | null }> = ({ chatid }) => {
   const [, setchatid] = useAtom(chatidAtom)
@@ -37,22 +38,28 @@ const PushChatCon: React.FC<{ chatid: string }> = ({ chatid }) => {
     }
   }, [pushAccount])
   return (
-    <Board title="Push Chatting" className="flex flex-col">
-      <div className="flex flex-col justify-between grow">
-        <div className="flex-col gap-y-[25px]">
-          {pushMessages?.map((message, index) => (
-            <div className="text-16px leading-24px text-[#ffffff]" key={index}>
-              {message}
-            </div>
-          ))}
+    <div className="grid grid-cols-[2]">
+      <Board title="Push Chatting" className="flex flex-col">
+        <div className="flex flex-col justify-between grow">
+          <div className="flex-col gap-y-[25px]">
+            {pushMessages?.map((message, index) => (
+              <div
+                className="text-16px leading-24px text-[#ffffff]"
+                key={index}
+              >
+                {message}
+              </div>
+            ))}
+          </div>
+          <PushAuthCon>
+            <PermissionAuthCon chatid={chatid}>
+              <PushSendInput chatid={chatid} />
+            </PermissionAuthCon>
+          </PushAuthCon>
         </div>
-        <PushAuthCon>
-          <PermissionAuthCon chatid={chatid}>
-            <PushSendInput chatid={chatid} />
-          </PermissionAuthCon>
-        </PushAuthCon>
-      </div>
-    </Board>
+      </Board>
+      <QR />
+    </div>
   )
 }
 

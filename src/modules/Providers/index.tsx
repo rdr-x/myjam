@@ -13,9 +13,7 @@ import {
 //TODO: temp
 const client = createReactClient({
   provider: studioProvider({
-    apiKey:
-      process.env.NEXT_PUBLIC_LIVEPEER_API_KEY ??
-      'b755a9ea-a195-483d-9cd1-1dd27ea8327f',
+    apiKey: '89499a40-502d-472c-bb31-ce996ab654d1',
   }),
 })
 

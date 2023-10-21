@@ -23,23 +23,23 @@ const StreamCard: FC<Streams> = ({
   //     console.log(streamCopy)
   // }, [stream,streamState]);
 
-  const handleDisabled = useMemo(() => {
-    if (status === STREAM_STATUS.LIVE) {
-      return false
-    }
-    if (status === STREAM_STATUS.UPCOMING) {
-      return true
-    }
-  }, [stream])
+  // const handleDisabled = useMemo(() => {
+  //   if (status === STREAM_STATUS.LIVE) {
+  //     return false
+  //   }
+  //   if (status === STREAM_STATUS.UPCOMING) {
+  //     return true
+  //   }
+  // }, [stream])
 
-  const handleClick = () => {
-    if (status === STREAM_STATUS.LIVE) {
-      router.push(`/view/${stream?.playbackId}`)
-    }
-    if (status === STREAM_STATUS.UPCOMING) {
-      // TODO: Add notification
-    }
-  }
+  // const handleClick = () => {
+  //   if (status === STREAM_STATUS.LIVE) {
+  //     router.push(`/view/${stream?.playbackId}`)
+  //   }
+  //   if (status === STREAM_STATUS.UPCOMING) {
+  //     // TODO: Add notification
+  //   }
+  // }
 
   return (
     <div className="flex w-[403px] h-[238px] relative bg-white bg-opacity-10 rounded-xl shadow border border-white border-opacity-60 gap-1">
