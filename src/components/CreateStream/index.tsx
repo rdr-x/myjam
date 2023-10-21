@@ -4,7 +4,7 @@ import { FC, useEffect, useState, ReactNode, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { streamState, StreamObject } from '@/services/stream'
-import Button from '../Button'
+import Switch from 'react-switch'
 import { PushAuthCon } from '@/modules/AuthCon'
 import { useCreateReciever } from '@/services/monetize'
 import { useCreatePushGroup } from '@/services/push'
@@ -50,6 +50,10 @@ const CreateStream: FC<Props> = ({ children }) => {
     }
   }, [createStream])
 
+  const handleMonetizeToggle = useCallback((checked: boolean) => {
+    setMonetize(checked)
+  }, [])
+
   useEffect(() => {
     if (!stream) return
     const { name, streamKey, id } = stream
@@ -71,6 +75,14 @@ const CreateStream: FC<Props> = ({ children }) => {
             className="!p-[0px] !bg-transparent !text-white text-sm font-normal !border-0 !ring-[0px]"
             textareaClass="!text-white !bg-transparent resize-none"
             onChange={(e) => setStreamName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-row items-center gap-x-[8px]">
+          monetize:
+          <Switch
+            onColor="#FF9591"
+            onChange={handleMonetizeToggle}
+            checked={monetize}
           />
         </div>
         <PushAuthCon>

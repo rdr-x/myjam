@@ -64,3 +64,5 @@ export const useMintTokens = () => {
 
   return { mint }
 }
+
+export const useDonate=()=>{}
