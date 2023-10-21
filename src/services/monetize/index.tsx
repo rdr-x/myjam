@@ -5,12 +5,14 @@ import { ComethProvider } from '@cometh/connect-sdk'
 import Abi from '@/utils/contract/abi.json'
 import { erc20Bytecodes } from '@/utils/contract/bytecode'
 import { walletAtom, walletAddressAtom } from '../account'
+import { pushAddressAtom } from '../push'
 
 export const recieverAddressAtom = atom<string | null>(null)
 
 export const useCreateReciever = () => {
   const wallet = useAtomValue(walletAtom)
   const walletAddress = useAtomValue(walletAddressAtom)
+  const pushAddress = useAtomValue(pushAddressAtom)
 
   const createReciever = useCallback(async () => {
     try {
@@ -25,14 +27,16 @@ export const useCreateReciever = () => {
         erc20Bytecodes,
         signer
       )
-      const reciever = await recieverContract.deploy(walletAddress)
+      const reciever = await recieverContract.deploy(
+        walletAddress ?? pushAddress
+      )
       // await reciever.deployTransaction.wait()
       const tx = await reciever.deployed()
       return tx.address
     } catch (err) {
       throw err
     }
-  }, [wallet, walletAddress])
+  }, [wallet, walletAddress, pushAddress])
 
   return { createReciever }
 }

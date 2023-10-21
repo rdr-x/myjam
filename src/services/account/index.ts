@@ -10,13 +10,19 @@ import {
 
 const walletAdaptor = new ConnectAdaptor({
   chainId: SupportedNetworks.MUMBAI,
-  apiKey: process.env.NEXT_PUBLIC_COMETH_API!,
+  apiKey:
+    process.env.NEXT_PUBLIC_COMETH_API ??
+    'a1440e72-cf45-458b-a28b-ef3770bef573',
 })
 
 const wallet = new ComethWallet({
   authAdapter: walletAdaptor,
-  apiKey: process.env.NEXT_PUBLIC_COMETH_API!,
-  rpcUrl: process.env.NEXT_PUBLIC_RPC_URL,
+  apiKey:
+    process.env.NEXT_PUBLIC_COMETH_API ??
+    'a1440e72-cf45-458b-a28b-ef3770bef573',
+  rpcUrl:
+    process.env.NEXT_PUBLIC_RPC_URL ??
+    'https://polygon-mumbai.g.alchemy.com/v2/8FPTSy7D_8z9O-7UXtFfIwrRQ47v0w8S',
 })
 
 export const walletAtom = atom(wallet)
