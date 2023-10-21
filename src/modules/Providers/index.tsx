@@ -42,7 +42,8 @@ export const PushProvider: React.FC<{ children: ReactNode }> = ({
       user: pushAddress,
       socketType: 'chat',
       socketOptions: { autoConnect: true, reconnectionAttempts: 3 },
-      env: 'staging' as Env,
+      // env: 'staging' as Env,
+      env: 'prod' as Env,
     })
     if (!pushSDKSocket) return
     // TODO:
