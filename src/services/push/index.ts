@@ -27,8 +27,8 @@ export const initializePushAtom = atom(null, async (get, set) => {
     })
 
     const signer = await provider.getSigner()
-    // const user = await PushAPI.initialize(signer, { env: "prod" as Env });
-    const user = await PushAPI.initialize(signer)
+    const user = await PushAPI.initialize(signer, { env: 'prod' as Env })
+    // const user = await PushAPI.initialize(signer)
     const pushAddress = await signer.getAddress()
     set(pushAddressAtom, pushAddress)
     set(pushAccountAtom, user)
